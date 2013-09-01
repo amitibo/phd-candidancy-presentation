@@ -82,6 +82,9 @@
 %
 \includeonlyframes{current}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% Pacakges  %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %
 % include packages
@@ -102,19 +105,18 @@
 \tikzstyle{na} = [baseline=-.5ex]
 \usepackage{cancel}
 
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% Custom Commands I Use  %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\OpSphere}{\bm{\mathcal{S}}}
-\newcommand{\OpRot}{\bm{\mathcal{R}}}
-\newcommand{\OpDistance}{\bm{\mathcal{D}}}
-\newcommand{\OpCumsum}{\bm{\mathcal{C}}}
-\newcommand{\OpInt}{\bm{\mathcal{I}}}
-\newcommand{\OpCamera}{\bm{\mathcal{P}}}
-\newcommand{\OpDiag}[1]{\mathrm{diag}\left\{#1\right\}}
+%
+% Note:
+% Nice curly font is {\bm{\mathcal{D}}}
+%
 \newcommand{\Grad}[1]{\bm{\triangledown_{#1}}}
-\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\abbrev}[1]{\rm{#1}}
+\newcommand{\argmin}{\mathrm{arg}\min}
 \newcommand{\curly}[1]{\left\{#1\right\}}
 \newcommand{\roundy}[1]{\left(#1\right)}
 \newcommand{\recty}[1]{\left[#1\right]}
@@ -123,6 +125,25 @@
 \newcommand{\mat}[1]{\bm{#1}}
 \newcommand{\transpose}[1]{{#1}^\intercal}
 \newcommand{\derivsym}[1]{\,d{#1}}
+
+%
+% Used symbols (only partial for now...)
+%
+\newcommand{\OpSphere}{\mathbfcal{S}}
+\newcommand{\OpRot}{\mathbfcal{R}}
+\newcommand{\OpDistance}{\bm{D}}
+\newcommand{\OpCumsum}{\mathbfcal{C}}
+\newcommand{\OpInt}{\mathbfcal{I}}
+\newcommand{\OpCamera}{\vect{\Pi}}
+\newcommand{\MaskSun}{\mathbfcal{M}}
+\newcommand{\Laplacian}{\mathbfcal{L}}
+\newcommand{\OpDiag}[1]{\mathbb{D}\left\{#1\right\}}
+\newcommand{\DistSet}{\mathcal{C}}
+\newcommand{\DistUnknown}{\vect{n}}
+\newcommand{\DistEstimated}{\hat{\vect{n}}}
+\newcommand{\CostFunc}[1]{E(#1)}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -160,13 +181,15 @@
 
 \begin{frame}{Motivation}
   \setbeamercovered{transparent}
-  \begin{itemize}
-  \item<1-> Fine solid particles or liquid droplets suspended in the
-    atmosphere
-  \item<2-> Affects the health of Earth's inhabitants
-  \item<3-> Affects Earth's climate
-  \end{itemize}
-  \begin{overlayarea}{\textwidth}{6cm}
+  \begin{overlayarea}{\textwidth}{3cm}
+    \begin{itemize}
+    \item<1-> Fine solid particles or liquid droplets suspended in the
+      atmosphere
+    \item<2-> Affects the health of Earth's inhabitants
+    \item<3-> Affects Earth's climate
+    \end{itemize}
+  \end{overlayarea}
+  \begin{overlayarea}{\textwidth}{4cm}
     \begin{center}
       \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
       \includegraphics<2>[height=4cm]{images/shenzen_haze.jpg}
@@ -195,8 +218,8 @@
 
 \begin{frame}{Aerosols Distribution is 3D}
   \begin{center}
-    \includegraphics<1>[height=7cm]{images/Volcanic_Lavender.jpg}
-    \includegraphics<2>[height=7cm]{images/volcano-airport.jpg}
+    \includegraphics<1>[height=6cm]{images/Volcanic_Lavender.jpg}
+    \includegraphics<2>[height=6cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
     \only<1> {\tiny image taken from http://www.wikipedia.com/}
@@ -493,24 +516,21 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 \end{frame}
 
 \begin{frame}{Formulation}
-  \setbeamercovered{transparent}
   \begin{block}{Objective Function}
-    \begin{align*}
-      {\rm minimize} \, f =  \sum_{\mbox{all images}} \left| \left( \begin{array}{c}\mbox{measured} \\ \mbox{image} \end{array} \right) - \left( \begin{array}{c}\mbox{modeled} \\ \mbox{image} \end{array} \right) \right|
-    \end{align*}
-
-    \onslide<2->{
-      \begin{itemize}
-      \item Formally
-      \begin{align*}
-        f &= \sum_{c=1}^{N_{\rm cams}} ||\mathrm{I}_c-\hat{\mathrm{I}}_c(\mat{A})||_2^2 \\
-        &\hat{\mat{A}}^{\rm aerosol} = \argmin_{\mat{A}} f
-      \end{align*}
-
-      \end{itemize}
-    }
+    \begin{equation*}
+      \CostFunc{\DistUnknown}
+      = \sum_{c=1}^{N_{\rm views}}
+      \left\|
+        \MaskSun[{\bm i}^{\rm measured}_c - {\bm i}_c({\bm n})]
+      \right\|^2_2  + \eta \Psi({\bm n})
+    \end{equation*}
   \end{block}
-
+  \begin{block}{Estimated Aerosols}
+    \begin{equation*}
+      \DistEstimated =
+      \argmin_{\DistUnknown \in \DistSet} \CostFunc{\DistUnknown}
+    \end{equation*}
+  \end{block}
 \end{frame}
 
 \begin{frame}{Challenge}
@@ -520,26 +540,16 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Jacobian (Differentiation)}
-  \setbeamercovered{transparent}
+\begin{frame}[label=gradient]{Optimization}
   \begin{block}{Gradient}
-    \begin{align*}
-      \Grad{\mat{A}} f = -2\sum_{c=1}^{N_{\rm cams}}
-      \transpose{\left[\mat{J}_{\hat{\vect{i}}_c}(\mat{A})\right]}(\mathrm{I}_c-\hat{\mathrm{I}}_c)
-    \end{align*}
+    \begin{equation*}
+      \Grad{{\bm n}} E = -2\sum_{c=1}^{N_{\rm views}}
+      \transpose{\left[{\bm J}_{{\bm i}_c}({\bm n})\right]} [{\bm i}^{\rm
+        measured}_c - {\bm i}_c({\bm n})] + 2 \eta
+      \transpose{\Laplacian}\transpose{{\bf W}}{\bf W}\Laplacian{\bm n}
+    \end{equation*}
   \end{block}
-  \pause
-  \begin{block}{Jacobian Equation}
-    \begin{align*}
-      \mat{J}_{\hat{\vect{i}}_c}(\mat{A}) &= \mathrm{L}^{\rm TOA}\,
-      \Big( \sigma^{\rm aerosol} \, \varpi \, \OpDiag{P^{\rm
-          aerosol}(\vect{\mu}_c)} - \nonumber \\
-      &\quad \transpose{\OpDistance} \OpDiag{ (\vect{\alpha}^{\rm
-          aerosol}_c + \vect{\alpha}^{\rm air}_c )} \Big)
-      \OpDiag{\exp^{-(\vect{\tau}^{\rm aerosol}_c + \vect{\tau}^{\rm
-            air}_c)}}\transpose{\OpCamera}
-    \end{align*}
-  \end{block}
+  \hfill\hyperlink{jacobian}{\beamergotobutton{Jacobian}}
 \end{frame}
 
 \begin{frame}{Parallelization}
@@ -553,33 +563,60 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 \subsection{Results}
 
-\begin{frame}{Reconstruction Results}
-  \begin{overlayarea}{\textwidth}{5cm}
-    \only<1>
-    {
-      \centerline{Original Atmospheres}
-      \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
-    }
-    \only<2>
-    {
-      \centerline{Reconstruction from Single-scattering Simulations}
-      \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
-    }
-    \only<3>
-    {
-      \centerline{Reconstruction from Multi-scattering Simulations}
-      \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
-    }
-  \end{overlayarea}
+\begin{frame}{Original Atmospheres}
+  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
 \end{frame}
 
+\begin{frame}{Single-scattering Simulations}
+  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
+  \centerline{\footnotesize Color represents aerosol density. The
+    density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
+\end{frame}
+
+\begin{frame}{Monte-Carlo Simulations}
+  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
+  \centerline{\footnotesize Color represents aerosol density. The
+    density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Further Research Directions}
+
+\begin{frame}{fake}
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\begin{frame}[label=jacobian]{Jacobian (Differentiation)}
+  \begin{block}{Jacobian Equation}
+    \begin{align*}
+      {\bm J}_{{\bm i}_c}({\bm n}) &= \\
+      &L^{\rm TOA}{\sigma}^{\rm
+        aerosol}({\bf A}-{\bf B}) \OpDiag{\exp[-(\vect{\tau}_c^{\rm air} +
+        {\sigma}^{\rm aerosol} {\bm D}_c {\bm n})]}
+      \transpose{{\vect{\Pi}}_c}
+    \end{align*}
+    where
+    \begin{align*}
+      {\bf A} &= \varpi^{\rm aerosol}
+      \OpDiag{ P_g^{\rm aerosol}(\vect{\Phi}^{\rm scatter}_c)} \\
+      {\bf B} &= \transpose{{\bm D}_c}
+      \OpDiag{[\tilde{\vect{\alpha}}^{\rm air}_c + \varpi^{\rm
+          aerosol}\sigma^{\rm aerosol} P^{\rm aerosol}_g(\vect{\Phi}^{\rm
+          scatter}_c) \odot{\bm n}    ]}
+    \end{align*}
+  \end{block}
+  \hfill\hyperlink{gradient}{\beamerreturnbutton{Return}}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
