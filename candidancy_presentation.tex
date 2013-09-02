@@ -80,7 +80,7 @@
 %
 % For speed up of compilation
 %
-\includeonlyframes{current}
+%\includeonlyframes{current}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%% Pacakges  %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,6 +106,11 @@
 \usepackage{cancel}
 
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
+\tikzstyle{nodeblue}=[fill=blue!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodered}=[fill=red!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodegreen}=[fill=green!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodeyellow}=[fill=yellow!20, anchor=base, rounded corners=2pt]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% Custom Commands I Use  %%%%%%%%%%%%%%%%%%
@@ -232,7 +237,7 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 \subsection{Aerosols Recovery Methods}
 
-\begin{frame}{Existing Methods}
+\begin{frame}{Remote Sensing}
   \begin{itemize}
   \item<1> MISR - Multi-angle Imaging SpectroRadiometer
   \end{itemize}
@@ -256,12 +261,14 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{flushright}
 \end{frame}
 
-\begin{frame}{Existing Methods}
+\begin{frame}{LIDAR - Light Detection And Ranging}
   \begin{itemize}
-  \item<1> LIDAR - Light Detection And Ranging
+  \item<1> From the ground
+  \item<2> From space
   \end{itemize}
   \begin{center}
     \includegraphics<1>[width=\columnwidth]{images/lidar.pdf}
+    \includegraphics<2>[height=5cm]{images/calipso.jpg}
   \end{center}
   \begin{flushright}
     \only<1> {\tiny images taken from
@@ -274,28 +281,89 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 \subsection{Suggested Method}
 
 \begin{frame}{Multi-angle Tomographic Reconstruction}
-  \setbeamercovered{transparent}
-  \begin{itemize}
-  \item <2-> Multi-angle imaging from the ground
-  \end{itemize}
   \begin{center}
     \only<1>
-    {\includegraphics[height=5cm]{images/camera_network-0.png}}
+    {\includegraphics[height=7cm]{images/camera_network-0.png}}
     \only<2>
-    {\includegraphics[height=5cm]{images/camera_network-1.png}}
+    {\includegraphics[height=7cm]{images/camera_network-1.png}}
   \end{center}
+\end{frame}
+
+\begin{frame}{Multi-angle imaging from the ground}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+      \item Use standard cameras
+      \item Visible spectrum
+      \item Based on Sun light scattering and attenuation
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \centering
+      {\includegraphics[height=3cm]{images/camera_network-1.png}}
+    \end{column}
+  \end{columns}
+  
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Related Work}
 
-\begin{frame}{$SO_2$}
-  
+\begin{frame}{Light-Field Photography}
+  \begin{columns}[T]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Sample light in space and direction
+      \item Enables re-focus, depth recovery, etc
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
+      \captionof{figure}{}
+      \includegraphics[height=0.30\textheight]{lytro.jpg}
+      \captionof{figure}{}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Optical Tomography}
-  
+\begin{frame}{Computed Tomography}
+  \begin{columns}[T]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Reconstruct 3D object from a set of projections
+      \item Usually assumes attenuation
+      \item Optical Tomography assumes a scattering medium
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.40\textheight]{ct.jpg}
+      \captionof{figure}{}
+      \includegraphics[height=0.30\textheight]{Optical_Tomography.png}
+      \captionof{figure}{}
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\begin{frame}[T]{Tomographic Reconstruction of Gas Plumes}
+  \begin{columns}[T]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Usually done in UV range
+      \item Simpler transfer model:
+        \begin{itemize}
+        \item Only scattering
+        \item Only emission and attenuation
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \includegraphics[height=0.40\textheight]{gas.jpg}
+      \captionof{figure}{\tiny Cosofret at el. 2009}
+    \end{column}
+  \end{columns}    
 \end{frame}
 
 
@@ -308,57 +376,65 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 \subsection{Radiative Transfer}
 
-\begin{frame}{Optical Depth}
-  \setbeamercovered{transparent}
-  \begin{overlayarea}{\textwidth}{3cm}
-    \begin{itemize}
-    \item <1-> Light is attenuated according to the {\em Beer-Lambert}
-      law
-    \item <2> Optical depth is a measure of transparency
-    \end{itemize}
-  \end{overlayarea}
-  \begin{overlayarea}{\textwidth}{3cm}
-    \begin{center}
-      \only<1> {
-        \includegraphics<1>[width=0.5\columnwidth]{images/beer_lambert.pdf}
-      }
-      \only<2> {
-        \begin{align*}
-          \tau = \sigma \int_{0}^x N(\tilde{x})\derivsym{\tilde{x}}
-        \end{align*}
-      }
-    \end{center}
-  \end{overlayarea}
-\end{frame}
-
-\begin{frame}{Scattering}
+\begin{frame}{Radiation}
+  Light interaction with the atmosphere:
   \begin{itemize}
-  \item Rayleigh - particles smaller then wavelength
-  \item Mie - particles bigger then wavelength
+  \item Loses energy to absorption
+  \item Gains energy by emission
+  \item Redistributes energy by scattering
   \end{itemize}
-  \begin{center}
-    \shadowbox{\includegraphics[height=4cm]{images/Mie_Rayleigh.jpg}}
-  \end{center}
+  \begin{align*}
+    \hat{\Omega} \cdot \nabla I &+ (k_{s}+k_{a}) I_\nu = \\
+    &j + \frac{1}{4\pi} \int_\Omega I \cdot P(\hat{\Omega},\Omega) d\Omega
+  \end{align*}    
 \end{frame}
 
-\begin{frame}{Boltzman Equation}
-  
+\begin{frame}{Absorption}
+  \begin{itemize}
+  \item  Light is attenuated according to {\em Beer-Lambert} law
+  \end{itemize}
+  \centerline{\includegraphics<1>[width=0.6\columnwidth]{images/beer_lambert.pdf}}
+  \begin{block}{Optical Depth}    
+    Measures transparency of medium
+    \begin{align*}
+      \tau = \sigma \int_{0}^x N(\tilde{x})\derivsym{\tilde{x}}
+    \end{align*}
+  \end{block}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Approximated Solutions}
-
-\begin{frame}{Single Scattering}
-  
+\begin{frame}[T]{Scattering}
+  \begin{columns}[T]
+    \column{0.6\columnwidth}
+    \setbeamercovered{transparent}
+    Scattering depends on:\\
+    \begin{itemize}
+    \item Particle type
+    \item Particle Shape
+    \item Particle size to wavelength ratio
+    \end{itemize}
+    \column{0.4\columnwidth}
+    \centering
+    \includegraphics[height=0.30\textheight]{images/scattering_spheric.jpg}
+    \captionof{figure}{\footnotesize Spherical Aerosol}
+    \includegraphics[height=0.30\textheight]{images/scattering_nonspheric.jpg}
+    \captionof{figure}{\footnotesize Non-spherical Aerosol}
+  \end{columns}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Inverse Problem}
-
-\begin{frame}{Numerical}
-  
+\begin{frame}[T]{Phase Function}
+  \begin{columns}[T]
+    \column{0.7\textwidth}
+    \begin{itemize}
+    \item Rayleigh - particles smaller then wavelength
+    \item Mie - particles bigger then wavelength
+      \begin{itemize}
+      \item Approximated using Henyey-Greenstein equation
+      \end{itemize}
+    \end{itemize}
+    \column{0.3\textwidth}
+    \centering
+    \includegraphics[height=4cm]{images/Mie_Rayleigh.jpg}
+  \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -414,16 +490,11 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \footnotesize
     \begin{align*}
       \mathrm{I} &= \\
-      & \tikz[baseline]{
-        \node[fill=blue!20,anchor=base,rounded corners=2pt]
-        (d1) {$\mathrm{L}^{\rm TOA}$}; } \,
-      \tikz[baseline]{ \node[fill=red!20,anchor=base,rounded corners=2pt]
-        (d4) {$\OpCamera$}; }
+      & \tikz[baseline]{ \node[nodeblue] (d1) {$\mathrm{L}^{\rm TOA}$}; } \,
+      \tikz[baseline]{ \node[nodered] (d4) {$\OpCamera$}; }
       \curly{\roundy{
-          \tikz[baseline]{ \node[fill=green!20,anchor=base,rounded corners=2pt]
-            (d3) {$\vect{\alpha}^{\rm aerosol} + \vect{\alpha}^{\rm air}$}; } }  \odot 
-        \tikz[baseline]{ \node[fill=yellow!20,anchor=base,rounded corners=2pt]
-          (d2) {$\exp^{-(\vect{\tau}^{\rm aerosol} + \vect{\tau}^{\rm air})}$}; } }
+          \tikz[baseline]{ \node[nodegreen] (d3) {$\vect{\alpha}^{\rm aerosol} + \vect{\alpha}^{\rm air}$}; } }  \odot 
+        \tikz[baseline]{ \node[nodeyellow] (d2) {$\exp^{-(\vect{\tau}^{\rm aerosol} + \vect{\tau}^{\rm air})}$}; } }
     \end{align*}
     \normalsize
 
@@ -488,7 +559,7 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Monte Carlo}
+\subsection{Multi-Scattering Simulations}
 
 \begin{frame}{Monte Carlo}
   \begin{figure}
@@ -515,14 +586,14 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{block}
 \end{frame}
 
-\begin{frame}{Formulation}
+\begin{frame}[label=objective]{Formulation}
   \begin{block}{Objective Function}
     \begin{equation*}
       \CostFunc{\DistUnknown}
       = \sum_{c=1}^{N_{\rm views}}
       \left\|
-        \MaskSun[{\bm i}^{\rm measured}_c - {\bm i}_c({\bm n})]
-      \right\|^2_2  + \eta \Psi({\bm n})
+        \tikz[baseline]{ \node[na] (d1) {$\MaskSun$};}[{\bm i}^{\rm measured}_c - {\bm i}_c({\bm n})]
+      \right\|^2_2  + \eta \tikz[baseline]{ \node[na] (d2) {$\Psi$};}({\bm n})
     \end{equation*}
   \end{block}
   \begin{block}{Estimated Aerosols}
@@ -531,6 +602,12 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
       \argmin_{\DistUnknown \in \DistSet} \CostFunc{\DistUnknown}
     \end{equation*}
   \end{block}
+  \begin{tikzpicture}[overlay] \pause
+    \node[nodeblue] at (3,5.5) (s1) {\hyperlink{mask}{M.S. Mask}};
+    \path[->] (s1) edge [bend left] (d1); \pause
+    \node[nodeyellow] at (8,5.5)(s2) {\hyperlink{regularization}{Regularizer}};
+    \path[->] (s2) edge [bend left] (d2);
+  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Challenge}
@@ -542,12 +619,13 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 \begin{frame}[label=gradient]{Optimization}
   \begin{block}{Gradient}
-    \begin{equation*}
-      \Grad{{\bm n}} E = -2\sum_{c=1}^{N_{\rm views}}
-      \transpose{\left[{\bm J}_{{\bm i}_c}({\bm n})\right]} [{\bm i}^{\rm
+    \begin{align*}
+      \Grad{{\bm n}} E &= \\
+      -&2\sum_{c=1}^{N_{\rm views}}
+      \transpose{\left[{\bm J}_{{\bm i}_c}({\bm n})\right]} \transpose{\MaskSun}\MaskSun[{\bm i}^{\rm
         measured}_c - {\bm i}_c({\bm n})] + 2 \eta
       \transpose{\Laplacian}\transpose{{\bf W}}{\bf W}\Laplacian{\bm n}
-    \end{equation*}
+    \end{align*}
   \end{block}
   \hfill\hyperlink{jacobian}{\beamergotobutton{Jacobian}}
 \end{frame}
@@ -561,21 +639,19 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{itemize}
 \end{frame}
 
-\subsection{Results}
-
-\begin{frame}{Original Atmospheres}
+\begin{frame}{Results - Original Atmospheres}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
 \end{frame}
 
-\begin{frame}{Single-scattering Simulations}
+\begin{frame}{Results - Single-scattering Simulations}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
 \end{frame}
 
-\begin{frame}{Monte-Carlo Simulations}
+\begin{frame}{Results - Monte-Carlo Simulations}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
@@ -586,8 +662,98 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
 \section{Further Research Directions}
 
-\begin{frame}{fake}
-  
+\subsection{Empirical Validation}
+
+\begin{frame}[label=current]{Experiment}
+  \begin{columns}[T]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Grab multiple images from moving car
+      \item Images registered using GPS and/or SfM tools
+      \item Compare to ground truth
+        \begin{itemize}
+        \item MISR
+        \item LIDAR
+        \item AERONET
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.30\textheight]{DSC_0688.JPG}
+      \captionof{figure}{}
+      \includegraphics[height=0.30\textheight]{AERONET.jpg}
+      \captionof{figure}{}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Inverse Problem}
+
+\begin{frame}{Model Extension}
+  \begin{itemize}
+  \item Multiple particles
+    \begin{itemize}
+    \item Martonchik at el. 1998
+    \end{itemize}
+  \item Improve algorithm speed
+  \item Account for Multiple-Scattering
+  \item Cloudy Skies
+  \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Aerosols in Partly Cloudy Skies}
+
+\begin{frame}{Clouds}
+  \begin{columns}[T]
+    \begin{column}{.6\textwidth}
+      \begin{itemize}
+      \item High Optical Depth
+        \begin{itemize}
+        \item Single-Scattering approximation not-valid.
+        \end{itemize}
+      \item Affect radiation transfer:
+        \begin{itemize}
+        \item Cast shadows
+        \item Reflect light
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.4\textwidth}
+      \includegraphics[height=0.40\textheight]{clouds.jpg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Reconstruction}
+  \begin{itemize}
+  \item Separate reconstruction
+    \begin{itemize}
+    \item SfM - Structure from Motion 
+    \item Visual Hull
+    \end{itemize}
+  \item Model extension
+    \begin{itemize}
+    \item Calculate effective phase function
+    \item Add as a separate source
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[label=current]{Reconstructed Clouds}
+  \centerline{\movie[height=7cm, width=12cm, poster, autostart]{Cloud Reconstruction}{clouds.avi}}
+\end{frame}
+
+
+\begin{frame}{Thank You}
+  \begin{center}
+    Thank You!
+  \end{center}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -616,6 +782,26 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \end{align*}
   \end{block}
   \hfill\hyperlink{gradient}{\beamerreturnbutton{Return}}
+\end{frame}
+
+\begin{frame}[label=mask]{Multi-Scattering Mask}
+  \begin{itemize}
+  \item Weight error by Single-Scattering dominance
+  \item Calculated empirically
+  \end{itemize}
+  \centerline{\includegraphics[height=4cm]{images/sun_mask.pdf}}
+  \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}} 
+\end{frame}
+
+\begin{frame}[label=regularization]{Regularization}
+  \begin{itemize}
+  \item Aerosol distributions are usually fuzzy
+  \item 3D Laplacian enforces {\em smoothness}: $\Laplacian{\bm n} = \| \nabla^2{\bm  n}\|^2_2$
+  \item Weighted by altitude: $w(k)=\exp\left[-h(k)/H^\mathrm{smooth}\right]$
+  \item Regularization by $\Psi({\bm n}) = \| {\bf W} \Laplacian{\bm n}\|^2_2$
+  \end{itemize}
+
+  \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
