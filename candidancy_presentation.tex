@@ -8,7 +8,7 @@
 % Beamer default paper size is 128mm by 96mm
 %
 
-\usetheme{Frankfurt}
+\usetheme{Singapore}
 % other themes: AnnArbor, Antibes, Bergen, Berkeley, Berlin,
 %               Boadilla, boxes, CambridgeUS, Copenhagen,
 %               Darmstadt, default, Dresden, Frankfurt, Goettingen,
@@ -59,12 +59,15 @@
 % \usepackage{beamerouterthemesmoothbars}
 % outer themes include default, infolines, miniframes, shadow, sidebar,
 %               smoothbars, smoothtree, split, tree
-\useoutertheme{miniframes}
+%\useoutertheme{miniframes}
 
 % to have the same footer on all slides
 %\setbeamertemplate{footline}[text line]{STUFF HERE!}
 %\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
 %\setbeamertemplate{footline}{\scriptsize{\vspace*{0.4cm}\hspace*{0.3cm}\insertframenumber}} 
+\setbeamertemplate{footline}{% set footline options
+  \insertpagenumber/\insertsectionendpage
+}
 
 %
 % Automatic Outline
