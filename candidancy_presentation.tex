@@ -65,9 +65,7 @@
 %\setbeamertemplate{footline}[text line]{STUFF HERE!}
 %\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
 %\setbeamertemplate{footline}{\scriptsize{\vspace*{0.4cm}\hspace*{0.3cm}\insertframenumber}} 
-\setbeamertemplate{footline}{% set footline options
-  \insertpagenumber/\insertsectionendpage
-}
+\setbeamertemplate{footline}{\insertpagenumber}
 
 %
 % Automatic Outline
@@ -151,8 +149,6 @@
 \newcommand{\DistEstimated}{\hat{\vect{n}}}
 \newcommand{\CostFunc}[1]{E(#1)}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,11 +179,17 @@
 
 \section{Introduction}
 
+\begin{frame}{}
+  \begin{center}
+    {\huge Introduction}
+  \end{center}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Motivation}
 
-\begin{frame}{Motivation}
+\begin{frame}{Aerosols in the Atmosphere}
   \setbeamercovered{transparent}
   \begin{overlayarea}{\textwidth}{3cm}
     \begin{itemize}
@@ -212,70 +214,18 @@
   \end{flushright}
 \end{frame}
 
-\begin{frame}{Aerosols Distribution is 3D}
-  \begin{itemize}
-    \item Eyjafjallaj\"{o}kull Eruption in 2010
-  \end{itemize}
+%%%
+
+\begin{frame}{Eyjafjallaj\"{o}kull Eruption in 2010}
   \begin{center}
     \includegraphics<1>[height=6cm]{images/1024px-Eyjafjallajokull_volcano_plume.jpg}
+    \includegraphics<2>[height=6cm]{images/Volcanic_Lavender.jpg}
+    \includegraphics<3>[height=6cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
     \only<1> {\tiny image taken from http://www.wikipedia.com/}
-  \end{flushright}
-\end{frame}
-
-\begin{frame}{Aerosols Distribution is 3D}
-  \begin{center}
-    \includegraphics<1>[height=6cm]{images/Volcanic_Lavender.jpg}
-    \includegraphics<2>[height=6cm]{images/volcano-airport.jpg}
-  \end{center}
-  \begin{flushright}
-    \only<1> {\tiny image taken from http://www.wikipedia.com/}
-    \only<2> {\tiny image taken from
-http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
-  \end{flushright}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Aerosols Recovery Methods}
-
-\begin{frame}{Remote Sensing}
-  \begin{itemize}
-  \item<1> MISR - Multi-angle Imaging SpectroRadiometer
-  \end{itemize}
-  \begin{center}
-    \includegraphics<1>[width=\columnwidth]{images/misr.pdf}
-  \end{center}
-  \begin{flushright}
-    \only<1> {\tiny images taken from http://www-misr.jpl.nasa.gov/}
-  \end{flushright}
-\end{frame}
-
-\begin{frame}{Common Atmospheric Models}
-  \begin{itemize}
-  \item<1> 1D or 2D models
-  \end{itemize}
-  \begin{center}
-    \includegraphics<1>[height=6cm]{images/atmosphere_layer.jpg}
-  \end{center}
-  \begin{flushright}
-    \only<1> {\tiny image taken from the Stratospheric Ozone Electronic Textbook}
-  \end{flushright}
-\end{frame}
-
-\begin{frame}{LIDAR - Light Detection And Ranging}
-  \begin{itemize}
-  \item<1> From the ground
-  \item<2> From space
-  \end{itemize}
-  \begin{center}
-    \includegraphics<1>[width=\columnwidth]{images/lidar.pdf}
-    \includegraphics<2>[height=5cm]{images/calipso.jpg}
-  \end{center}
-  \begin{flushright}
-    \only<1> {\tiny images taken from
-      http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
+    \only<2> {\tiny image taken from http://www.wikipedia.com/}
+    \only<3> {\tiny image taken from http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{flushright}
 \end{frame}
 
@@ -292,6 +242,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{center}
 \end{frame}
 
+%%%
+
 \begin{frame}{Multi-angle imaging from the ground}
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
@@ -306,14 +258,79 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
       {\includegraphics[height=3cm]{images/camera_network-1.png}}
     \end{column}
   \end{columns}
-  
+\end{frame}
+
+%%%
+
+\begin{frame}[label=current]{Reconstructed Aerosols}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=current]{Reconstructed Clouds}
+  \centerline{
+    \movie[height=7cm, width=12cm, poster, autostart]{Cloud Reconstruction}{clouds.avi}
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Current Recovery Methods}
+
+\begin{frame}{Remote Sensing}
+  \begin{itemize}
+  \item<1> MISR - Multi-angle Imaging SpectroRadiometer
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics<1>[width=\columnwidth]{images/misr.pdf}
+  \end{center}
+
+  \begin{flushright}
+    \only<1> {\tiny images taken from http://www-misr.jpl.nasa.gov/}
+  \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}{LIDAR - Light Detection And Ranging}
+  \begin{itemize}
+  \item<1> From the ground
+  \item<2> From space
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics<1>[width=\columnwidth]{images/lidar.pdf}
+    \includegraphics<2>[height=5cm]{images/calipso.jpg}
+  \end{center}
+
+  \begin{flushright}
+    \only<1> {\tiny images taken from
+      http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
+  \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}{Common Atmospheric Models}
+  \begin{itemize}
+  \item<1> 1D or 2D models
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics<1>[height=6cm]{images/atmosphere_layer.jpg}
+  \end{center}
+
+  \begin{flushright}
+    \only<1> {\tiny image taken from the Stratospheric Ozone Electronic Textbook}
+  \end{flushright}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Related Work}
 
-\begin{frame}{Light-Field Photography}
+\begin{frame}{Integral Imaging}
   \begin{columns}[T]
     \begin{column}{.7\textwidth}
       \begin{itemize}
@@ -324,12 +341,14 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \begin{column}{.3\textwidth}
       \centering
       \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
-      \captionof{figure}{}
+      \captionof{figure}{\tiny http://graphics.stanford.edu/}
       \includegraphics[height=0.30\textheight]{lytro.jpg}
-      \captionof{figure}{}
+      \captionof{figure}{\tiny http://graphics.stanford.edu/}
     \end{column}
   \end{columns}
 \end{frame}
+
+%%%
 
 \begin{frame}{Computed Tomography}
   \begin{columns}[T]
@@ -350,6 +369,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{columns}  
 \end{frame}
 
+%%%
+
 \begin{frame}[T]{Tomographic Reconstruction of Gas Plumes}
   \begin{columns}[T]
     \begin{column}{.7\textwidth}
@@ -368,7 +389,6 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \end{column}
   \end{columns}    
 \end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -392,6 +412,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{align*}    
 \end{frame}
 
+%%%
+
 \begin{frame}{Absorption}
   \begin{itemize}
   \item  Light is attenuated according to {\em Beer-Lambert} law
@@ -404,6 +426,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \end{align*}
   \end{block}
 \end{frame}
+
+%%%
 
 \begin{frame}[T]{Scattering}
   \begin{columns}[T]
@@ -424,12 +448,27 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{columns}
 \end{frame}
 
-\begin{frame}[T]{Phase Function}
+%%%
+
+\begin{frame}{Phase Function}
+    \begin{overprint}
+      \only<1>
+      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function1.pdf_tex}}}}
+      \only<2>
+      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function2.pdf_tex}}}}
+      \only<3>
+      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function3.pdf_tex}}}}
+    \end{overprint}  
+\end{frame}
+
+%%%
+
+\begin{frame}[T]{Phase Function Used}
   \begin{columns}[T]
     \column{0.7\textwidth}
     \begin{itemize}
-    \item Rayleigh - particles smaller then wavelength
-    \item Mie - particles bigger then wavelength
+    \item Rayleigh - for air molecules
+    \item Mie - for aerosols
       \begin{itemize}
       \item Approximated using Henyey-Greenstein equation
       \end{itemize}
@@ -438,6 +477,18 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \centering
     \includegraphics[height=4cm]{images/Mie_Rayleigh.jpg}
   \end{columns}
+\end{frame}
+
+%%%
+
+\begin{frame}{Tomography}
+  \begin{center}
+    \includegraphics<1>[height=6cm]{images/ct.png}
+  \end{center}
+  
+  \begin{flushright}
+    \only<1> {\tiny http://medical-dictionary.thefreedictionary.com}
+  \end{flushright}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -461,6 +512,7 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \item <6> Simple forward model
     \item <6> No Multi-Scattering
     \end{itemize}
+
     \column{0.5\columnwidth}
     \begin{overlayarea}{\columnwidth}{8cm}
       \only<1> {\centerline{\includegraphics[width=\columnwidth]
@@ -476,14 +528,15 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
       \only<6> {\centerline{\includegraphics[width=\columnwidth]
           {images/atmo_settings3D6.pdf}}}
     \end{overlayarea}
-\end{columns}
+  \end{columns}
 \end{frame}
+
+%%%
 
 \begin{frame}{Image Formation Model}
   \begin{columns}[c]
 
     \column{0.7\textwidth}
-
     \begin{itemize}
     \item <3-> Attenuation \tikz[na] \node[coordinate] (s2) {};
     \item <4-> Scattering \tikz[na] \node[coordinate] (s3) {};
@@ -506,15 +559,14 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
     \item <5-> Camera projection \tikz[na] \node[coordinate] (s4) {};
     \end{itemize}
 
-    \begin{tikzpicture}[overlay]                  \pause
-      \path[->] (s1) edge [bend right] (d1);     \pause
-      \path[->] (s2) edge [bend left] (d2);    \pause
-      \path[->] (s3) edge [bend left] (d3); \pause
-      \path[->] (s4) edge [bend right] (d4); \pause
+    \begin{tikzpicture}[overlay]
+      \onslide<2->{\path[->] (s1) edge [bend right] (d1);}
+      \onslide<3->{\path[->] (s2) edge [bend left] (d2);}
+      \onslide<4->{\path[->] (s3) edge [bend left] (d3);}
+      \onslide<5->{\path[->] (s4) edge [bend right] (d4);}
     \end{tikzpicture}
 
     \column{0.3\textwidth}
-
     \begin{overprint}
       \only<1-2> {\centerline{\includegraphics[width=\columnwidth]
           {images/atmo_settings3D2.pdf}}}
@@ -526,6 +578,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
 
   \end{columns}
 \end{frame}
+
+%%%
 
 \begin{frame}{Synthesized Examples}
   \begin{columns}[C]
@@ -589,6 +643,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{block}
 \end{frame}
 
+%%%
+
 \begin{frame}[label=objective]{Formulation}
   \begin{block}{Objective Function}
     \begin{equation*}
@@ -613,12 +669,16 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{tikzpicture}
 \end{frame}
 
+%%%
+
 \begin{frame}{Challenge}
   \begin{figure}
     \centering
     \centerline{\includegraphics[height=7cm]{images/voxels3.pdf}}
   \end{figure}
 \end{frame}
+
+%%%
 
 \begin{frame}[label=gradient]{Optimization}
   \begin{block}{Gradient}
@@ -633,6 +693,8 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \hfill\hyperlink{jacobian}{\beamergotobutton{Jacobian}}
 \end{frame}
 
+%%%
+
 \begin{frame}{Parallelization}
   \begin{itemize}
   \item Processed using a computer cluster
@@ -642,17 +704,23 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{itemize}
 \end{frame}
 
+%%%
+
 \begin{frame}{Results - Original Atmospheres}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
 \end{frame}
 
+%%%
+
 \begin{frame}{Results - Single-scattering Simulations}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
   \centerline{\footnotesize Color represents aerosol density. The
     density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
 \end{frame}
+
+%%%
 
 \begin{frame}{Results - Monte-Carlo Simulations}
   \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
@@ -733,25 +801,33 @@ http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{columns}
 \end{frame}
 
+%%%
+
 \begin{frame}{Reconstruction}
+
   \begin{itemize}
   \item Separate reconstruction
     \begin{itemize}
     \item SfM - Structure from Motion 
     \item Visual Hull
     \end{itemize}
+
   \item Model extension
     \begin{itemize}
     \item Calculate effective phase function
     \item Add as a separate source
     \end{itemize}
   \end{itemize}
+
 \end{frame}
+
+%%%
 
 \begin{frame}[label=current]{Reconstructed Clouds}
   \centerline{\movie[height=7cm, width=12cm, poster, autostart]{Cloud Reconstruction}{clouds.avi}}
 \end{frame}
 
+%%%
 
 \begin{frame}{Thank You}
   \begin{center}
