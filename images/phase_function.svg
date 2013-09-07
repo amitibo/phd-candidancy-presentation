@@ -449,7 +449,8 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="light text"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <flowRoot
        xml:space="preserve"
        id="flowRoot6529"
@@ -466,9 +467,9 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="scatter"
-     style="display:inline"
-     sodipodi:insensitive="true"
-     transform="translate(-242.66042,-372.69428)">
+     style="display:none"
+     transform="translate(-242.66042,-372.69428)"
+     sodipodi:insensitive="true">
     <g
        id="g5646">
       <path
@@ -598,7 +599,8 @@
      id="layer5"
      inkscape:label="function"
      transform="translate(-242.66042,-372.69428)"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        style="fill:none;stroke:#000000;stroke-width:1.69655323;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
        d="m 498.82742,489.74277 c 0,27.6644 -11.86112,52.7098 -31.03797,70.83911 -19.17685,18.12932 -45.66942,-10.22501 -74.93231,-10.22501 -29.26288,0 -55.75544,28.35433 -74.93231,10.22501 -19.17685,-18.12931 -31.03797,-43.17471 -31.03797,-70.83911 0,-27.66438 11.86112,-52.70979 31.03797,-70.8391 19.17687,-18.12931 45.66943,11.90875 74.93231,11.90875 29.26289,0 55.75546,-30.03806 74.93231,-11.90875 19.17685,18.12931 31.03797,43.17472 31.03797,70.8391 z"

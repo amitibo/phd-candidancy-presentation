@@ -72,9 +72,11 @@
 %
 \AtBeginSection[section]
 {
-  \begin{frame}
-    \frametitle{Outline}
-    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/show/hide]
+  \begin{frame}{}
+    \begin{center}
+      {\huge \insertsectionhead}
+      \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/show/hide]
+    \end{center}
   \end{frame}
 }
 
@@ -93,6 +95,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage[small]{caption}
 \captionsetup{labelformat=empty, labelsep=none}
+\usepackage{animate}
 \usepackage{graphicx}
 \graphicspath{{./images/}}
 \usepackage{bm}
@@ -140,7 +143,7 @@
 \newcommand{\OpDistance}{\bm{D}}
 \newcommand{\OpCumsum}{\mathbfcal{C}}
 \newcommand{\OpInt}{\mathbfcal{I}}
-\newcommand{\OpCamera}{\vect{\Pi}}
+\newcommand{\OpCamera}{\mathbfcal{P}}
 \newcommand{\MaskSun}{\mathbfcal{M}}
 \newcommand{\Laplacian}{\mathbfcal{L}}
 \newcommand{\OpDiag}[1]{\mathbb{D}\left\{#1\right\}}
@@ -179,33 +182,16 @@
 
 \section{Introduction}
 
-\begin{frame}{}
-  \begin{center}
-    {\huge Introduction}
-  \end{center}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Motivation}
 
 \begin{frame}{Aerosols in the Atmosphere}
-  \setbeamercovered{transparent}
-  \begin{overlayarea}{\textwidth}{3cm}
-    \begin{itemize}
-    \item<1-> Fine solid particles or liquid droplets suspended in the
-      atmosphere
-    \item<2-> Affects the health of Earth's inhabitants
-    \item<3-> Affects Earth's climate
-    \end{itemize}
-  \end{overlayarea}
-  \begin{overlayarea}{\textwidth}{4cm}
-    \begin{center}
-      \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
-      \includegraphics<2>[height=4cm]{images/shenzen_haze.jpg}
-      \includegraphics<3>[height=4cm]{images/radiation_budget.jpg}
-    \end{center}    
-  \end{overlayarea}
+  \begin{center}
+    \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
+    \includegraphics<2>[height=7cm]{images/shenzen_haze.jpg}
+    \includegraphics<3>[height=7cm]{images/radiation_budget.jpg}
+  \end{center}    
   \begin{flushright}
     \only<1-2> {\tiny images taken from
       http://earthobservatory.nasa.gov/Features/Aerosols/}
@@ -218,9 +204,9 @@
 
 \begin{frame}{Eyjafjallaj\"{o}kull Eruption in 2010}
   \begin{center}
-    \includegraphics<1>[height=6cm]{images/1024px-Eyjafjallajokull_volcano_plume.jpg}
-    \includegraphics<2>[height=6cm]{images/Volcanic_Lavender.jpg}
-    \includegraphics<3>[height=6cm]{images/volcano-airport.jpg}
+    \includegraphics<1>[height=7cm]{images/1024px-Eyjafjallajokull_volcano_plume.jpg}
+    \includegraphics<2>[height=7cm]{images/Volcanic_Lavender.jpg}
+    \includegraphics<3>[height=7cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
     \only<1> {\tiny image taken from http://www.wikipedia.com/}
@@ -236,9 +222,13 @@
 \begin{frame}{Multi-angle Tomographic Reconstruction}
   \begin{center}
     \only<1>
-    {\includegraphics[height=7cm]{images/camera_network-0.png}}
+    {
+      \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network1.pdf_tex}}}
+    }
     \only<2>
-    {\includegraphics[height=7cm]{images/camera_network-1.png}}
+    {
+      \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network2.pdf_tex}}}
+    }
   \end{center}
 \end{frame}
 
@@ -262,7 +252,15 @@
 
 %%%
 
-\begin{frame}[label=current]{Reconstructed Aerosols}
+\begin{frame}[label=current]{Simulated Reconstruction}
+  \begin{center}
+    \only<1>{
+      \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
+    }
+    \only<2>{
+      \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot2_}{0}{35}
+    }
+  \end{center}
 \end{frame}
 
 %%%
@@ -406,15 +404,15 @@
   \item Gains energy by emission
   \item Redistributes energy by scattering
   \end{itemize}
-  \begin{align*}
-    \hat{\Omega} \cdot \nabla I &+ (k_{s}+k_{a}) I_\nu = \\
-    &j + \frac{1}{4\pi} \int_\Omega I \cdot P(\hat{\Omega},\Omega) d\Omega
-  \end{align*}    
+  % \begin{align*}
+  %   \hat{\Omega} \cdot \nabla I &+ (k_{s}+k_{a}) I_\nu = \\
+  %   &j + \frac{1}{4\pi} \int_\Omega I \cdot P(\hat{\Omega},\Omega) d\Omega
+  % \end{align*}    
 \end{frame}
 
 %%%
 
-\begin{frame}{Absorption}
+\begin{frame}{Attenuation}
   \begin{itemize}
   \item  Light is attenuated according to {\em Beer-Lambert} law
   \end{itemize}
@@ -429,28 +427,28 @@
 
 %%%
 
-\begin{frame}[T]{Scattering}
-  \begin{columns}[T]
-    \column{0.6\columnwidth}
-    \setbeamercovered{transparent}
-    Scattering depends on:\\
-    \begin{itemize}
-    \item Particle type
-    \item Particle Shape
-    \item Particle size to wavelength ratio
-    \end{itemize}
-    \column{0.4\columnwidth}
-    \centering
-    \includegraphics[height=0.30\textheight]{images/scattering_spheric.jpg}
-    \captionof{figure}{\footnotesize Spherical Aerosol}
-    \includegraphics[height=0.30\textheight]{images/scattering_nonspheric.jpg}
-    \captionof{figure}{\footnotesize Non-spherical Aerosol}
-  \end{columns}
-\end{frame}
+% \begin{frame}[T]{Scattering}
+%   \begin{columns}[T]
+%     \column{0.6\columnwidth}
+%     \setbeamercovered{transparent}
+%     Scattering depends on:\\
+%     \begin{itemize}
+%     \item Particle type
+%     \item Particle Shape
+%     \item Particle size to wavelength ratio
+%     \end{itemize}
+%     \column{0.4\columnwidth}
+%     \centering
+%     \includegraphics[height=0.30\textheight]{images/scattering_spheric.jpg}
+%     \captionof{figure}{\footnotesize Spherical Aerosol}
+%     \includegraphics[height=0.30\textheight]{images/scattering_nonspheric.jpg}
+%     \captionof{figure}{\footnotesize Non-spherical Aerosol}
+%   \end{columns}
+% \end{frame}
 
 %%%
 
-\begin{frame}{Phase Function}
+\begin{frame}{Scattering}
     \begin{overprint}
       \only<1>
       {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function1.pdf_tex}}}}
@@ -465,15 +463,12 @@
 
 \begin{frame}[T]{Phase Function Used}
   \begin{columns}[T]
-    \column{0.7\textwidth}
+    \column{0.6\textwidth}
     \begin{itemize}
-    \item Rayleigh - for air molecules
-    \item Mie - for aerosols
-      \begin{itemize}
-      \item Approximated using Henyey-Greenstein equation
-      \end{itemize}
+    \item Rayleigh scattering - for air molecules
+    \item  Henyey-Greenstein equation - for aerosols
     \end{itemize}
-    \column{0.3\textwidth}
+    \column{0.4\textwidth}
     \centering
     \includegraphics[height=4cm]{images/Mie_Rayleigh.jpg}
   \end{columns}
@@ -494,22 +489,54 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Current PhD Research: Ongoing}
+\section{Ongoing PhD Research}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{overview}
+
+\begin{frame}{}
+  \begin{center}
+    \includegraphics<1>[height=8cm]{images/diagram.pdf}    
+    \includegraphics<2>[height=8cm]{images/diagram_reference_images.pdf}    
+  \end{center}
+\end{frame}
+
+%%%
+
+\begin{frame}{Forward Simulated Models}
+  \begin{columns}[C]
+    \column{0.333\textwidth}
+    \begin{itemize}
+    \item Analytic Model
+    \end{itemize}
+
+    \column{0.333\textwidth}
+    \includegraphics[width=\columnwidth]{images/diagram_models.pdf}
+
+    \column{0.333\textwidth}
+    \begin{itemize}
+    \item Physcial Model
+    \item Joint work with Mr. Vadim Holodovsky
+    \end{itemize}
+  \end{columns}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Image formation using the single-scattering model}
 
-\begin{frame}{Model}
+\begin{frame}{Single-Scattering Model}
   \begin{columns}[c]
     \column{0.5\columnwidth}
     \setbeamercovered{transparent}
     \begin{itemize}
     \item <1-2> Atmosphere volume
-    \item <1-2> Voxel - Volume Element
-    \item <3-4> Light is attenuated due to scattering and absorption
-    \item <3-5> Light scatters only once between source and viewer
-    \item <6> Simple forward model
+    \item <2> Voxel - Volume Element
+    \item <3> Light is attenuated due to scattering and absorption
+    \item <4> Light scatters only once between source and viewer
+    \item <5> Light is attenuated due to scattering and absorption
+    \item <6> Simple Analytic model
     \item <6> No Multi-Scattering
     \end{itemize}
 
@@ -618,18 +645,65 @@
 
 \subsection{Multi-Scattering Simulations}
 
-\begin{frame}{Monte Carlo}
+\begin{frame}{Monte Carlo Method}
   \begin{figure}
     \centering
     \begin{overprint}
       \only<1>
-      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/mc_method.pdf_tex}}}}
+      {\centerline{\includegraphics[height=7cm]{images/roullete.jpg}}} % Image taken from wikimedia commons 
       \only<2>
-      {\centerline{\includegraphics[height=7cm]{images/mc_result.pdf}}}
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method1.pdf_tex}}}}
       \only<3>
-      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/cross_section.pdf_tex}}}}
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method2.pdf_tex}}}}
+      \only<4>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method3.pdf_tex}}}}
+      \only<5>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method4.pdf_tex}}}}
+      \only<6>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method5.pdf_tex}}}}
+      \only<7>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method6.pdf_tex}}}}
+      \only<8>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method7.pdf_tex}}}}
+      \only<9>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method8.pdf_tex}}}}
+      \only<10>
+      {\centerline{\def\svgwidth{0.9\linewidth}\small{\input{images/mc_method9.pdf_tex}}}}
     \end{overprint}
   \end{figure}
+\end{frame}
+
+%%%
+
+\begin{frame}{Monte Carlo Results}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \centering
+      \only<1>
+      {
+        \includegraphics[height=0.60\textheight]{images/result_mc.pdf}
+        \captionof{figure}{Monte Carlo Model}
+      }
+      \only<2>
+      {
+        \centerline{\def\svgwidth{0.8\linewidth}\footnotesize{\input{images/cross_section_x.pdf_tex}}}
+        \captionof{figure}{X Cross Section}
+      }
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \centering
+      \only<1>
+      {
+        \includegraphics[height=0.60\textheight]{images/result_single.pdf}
+        \captionof{figure}{Single Scattering Model}
+      }
+      \only<2>
+      {
+        \centerline{\def\svgwidth{0.8\linewidth}\footnotesize{\input{images/cross_section_y.pdf_tex}}}
+        \captionof{figure}{Y Cross Section}
+      }
+    \end{column}
+  \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -732,6 +806,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Further Research Directions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Empirical Validation}
 
@@ -848,7 +924,7 @@
       &L^{\rm TOA}{\sigma}^{\rm
         aerosol}({\bf A}-{\bf B}) \OpDiag{\exp[-(\vect{\tau}_c^{\rm air} +
         {\sigma}^{\rm aerosol} {\bm D}_c {\bm n})]}
-      \transpose{{\vect{\Pi}}_c}
+      \transpose{\OpCamera_c}
     \end{align*}
     where
     \begin{align*}
