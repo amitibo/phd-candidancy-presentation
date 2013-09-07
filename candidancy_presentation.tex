@@ -271,6 +271,23 @@
   }
 \end{frame}
 
+%%%
+
+\begin{frame}{Porject Frame}
+  \begin{itemize}
+  \item Group
+    \begin{itemize}
+    \item Amit Aides - PhD Candidate - Analysis algorithm, Experiments.
+    \item Vadim Holodovsky - Msc Student - Monte Carlo simulations.
+    \item Danny Veikherman - Msc Student - Custom hardware.
+    \end{itemize}
+  \item Publications
+    \item Presented in the MISR Data Users Science Symposium Dec. 2012, Pasadena, CA, USA
+    \item Submitted to the Optics Express Journal.
+  \end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Current Recovery Methods}
@@ -397,7 +414,7 @@
 
 \subsection{Radiative Transfer}
 
-\begin{frame}{Radiation}
+\begin{frame}{Radiation Transfer}
   Light interaction with the atmosphere:
   \begin{itemize}
   \item Loses energy to absorption
@@ -456,12 +473,16 @@
       {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function2.pdf_tex}}}}
       \only<3>
       {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function3.pdf_tex}}}}
-    \end{overprint}  
+    \end{overprint}
+    
+    \begin{center}
+      \only<3>{\Large Particle Phase Function}
+    \end{center}
 \end{frame}
 
 %%%
 
-\begin{frame}[T]{Phase Function Used}
+\begin{frame}[T]{Phase Functions Used}
   \begin{columns}[T]
     \column{0.6\textwidth}
     \begin{itemize}
@@ -499,27 +520,8 @@
   \begin{center}
     \includegraphics<1>[height=8cm]{images/diagram.pdf}    
     \includegraphics<2>[height=8cm]{images/diagram_reference_images.pdf}    
+    \includegraphics<3>[height=8cm]{images/diagram_models.pdf}    
   \end{center}
-\end{frame}
-
-%%%
-
-\begin{frame}{Forward Simulated Models}
-  \begin{columns}[C]
-    \column{0.333\textwidth}
-    \begin{itemize}
-    \item Analytic Model
-    \end{itemize}
-
-    \column{0.333\textwidth}
-    \includegraphics[width=\columnwidth]{images/diagram_models.pdf}
-
-    \column{0.333\textwidth}
-    \begin{itemize}
-    \item Physcial Model
-    \item Joint work with Mr. Vadim Holodovsky
-    \end{itemize}
-  \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -527,17 +529,33 @@
 \subsection{Image formation using the single-scattering model}
 
 \begin{frame}{Single-Scattering Model}
+  \begin{columns}[C]
+    \column{0.4\textwidth}
+    \begin{itemize}
+    \item Analytic Model
+    \end{itemize}
+
+    \column{0.6\textwidth}
+    \includegraphics[width=\columnwidth]{images/diagram_models_single.pdf}
+
+  \end{columns}
+\end{frame}
+
+%%%
+
+\begin{frame}{Single-Scattering Model}
   \begin{columns}[c]
     \column{0.5\columnwidth}
     \setbeamercovered{transparent}
     \begin{itemize}
     \item <1-2> Atmosphere volume
-    \item <2> Voxel - Volume Element
-    \item <3> Light is attenuated due to scattering and absorption
-    \item <4> Light scatters only once between source and viewer
-    \item <5> Light is attenuated due to scattering and absorption
-    \item <6> Simple Analytic model
-    \item <6> No Multi-Scattering
+    \item <2-3> Voxel - Volume Element
+    \item <3> Contains air and aerosols
+    \item <4> Light is attenuated due to scattering and absorption
+    \item <5> Light scatters only once between source and viewer
+    \item <6> Light is attenuated due to scattering and absorption
+    \item <7> Simple Analytic model
+    \item <7> No Multi-Scattering
     \end{itemize}
 
     \column{0.5\columnwidth}
@@ -554,6 +572,8 @@
           {images/atmo_settings3D5.pdf}}}
       \only<6> {\centerline{\includegraphics[width=\columnwidth]
           {images/atmo_settings3D6.pdf}}}
+      \only<7> {\centerline{\includegraphics[width=\columnwidth]
+          {images/atmo_settings3D7.pdf}}}
     \end{overlayarea}
   \end{columns}
 \end{frame}
@@ -608,6 +628,25 @@
 
 %%%
 
+\begin{frame}{Simulation Settings}
+  \begin{center}
+    \begin{overlayarea}{\columnwidth}{8cm}
+        \only<1>
+        {\centerline{\includegraphics[width=\columnwidth]{images/voxels1.pdf}}}
+        \only<2>
+        {\centerline{\includegraphics[width=\columnwidth]{images/voxels2.pdf}}}
+        \only<3>
+        {\centerline{\includegraphics[width=\columnwidth]{images/voxels3.pdf}}}
+        \only<4>
+        {\centerline{\includegraphics[width=\columnwidth]{images/voxels4.pdf}}}
+        \only<5>
+        {\centerline{\includegraphics[width=\columnwidth]{images/voxels5.pdf}}}
+    \end{overlayarea}
+  \end{center}
+\end{frame}
+
+%%%
+
 \begin{frame}{Synthesized Examples}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
@@ -644,6 +683,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Multi-Scattering Simulations}
+
+\begin{frame}{Forward Simulated Models}
+  \begin{columns}[C]
+    \column{0.6\textwidth}
+    \includegraphics[width=\columnwidth]{images/diagram_models_multi.pdf}
+
+    \column{0.4\textwidth}
+    \begin{itemize}
+    \item Physcial Model
+    \item Joint work with Mr. Vadim Holodovsky
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+%%%
 
 \begin{frame}{Monte Carlo Method}
   \begin{figure}
@@ -711,10 +765,19 @@
 \subsection{Inverse Problem}
 
 \begin{frame}{Inverse Problem}
-  \begin{block}{Problem}
-    Given a set of captured images, calculate the underlying aerosol
-    distribution
-  \end{block}
+  \begin{center}
+    \includegraphics[height=5cm]{images/diagram_algorithm.pdf}
+  \end{center}
+\end{frame}
+
+%%%
+
+\begin{frame}{Challenge}
+  \begin{center}
+    \centering
+    \only<1>{\includegraphics[height=7cm]{images/challenge1.pdf}}
+    \only<2>{\includegraphics[height=7cm]{images/challenge2.pdf}}
+  \end{center}
 \end{frame}
 
 %%%
@@ -745,15 +808,6 @@
 
 %%%
 
-\begin{frame}{Challenge}
-  \begin{figure}
-    \centering
-    \centerline{\includegraphics[height=7cm]{images/voxels3.pdf}}
-  \end{figure}
-\end{frame}
-
-%%%
-
 \begin{frame}[label=gradient]{Optimization}
   \begin{block}{Gradient}
     \begin{align*}
@@ -769,13 +823,21 @@
 
 %%%
 
-\begin{frame}{Parallelization}
-  \begin{itemize}
-  \item Processed using a computer cluster
-  \item Each synthetic camera processed on a separate core
-  \item Total 95 synthetic cameras
-  \item A couple of hours to reconstruct 250K voxels
-  \end{itemize}
+\begin{frame}{Parallelization} 
+  \begin{columns}
+    \column{0.8\textwidth}
+    \begin{itemize}
+    \item Processed using a computer cluster
+    \item Each synthetic camera processed on a separate core
+    \item Up to 100 cores = 100 synthetic cameras
+    \item A couple of hours to reconstruct 250K voxels
+    \end{itemize}
+
+    \column{0.2\textwidth}
+    \begin{center}
+      \includegraphics[width=\columnwidth]{tamnun.jpg}
+    \end{center}
+  \end{columns}
 \end{frame}
 
 %%%
@@ -905,9 +967,9 @@
 
 %%%
 
-\begin{frame}{Thank You}
+\begin{frame}{}
   \begin{center}
-    Thank You!
+    {\huge Thank You!}
   \end{center}
 \end{frame}
 
