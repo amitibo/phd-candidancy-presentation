@@ -100,16 +100,17 @@
 \graphicspath{{./images/}}
 \usepackage{bm}
 \usepackage{fancybox}
-\usepackage{multimedia}
+\usepackage{media9}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{arrows,shapes,backgrounds}
 \tikzstyle{every picture}+=[remember picture]
 \tikzstyle{na} = [baseline=-.5ex]
 \usepackage{cancel}
 
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
 
 \tikzstyle{nodeblue}=[fill=blue!20, anchor=base, rounded corners=2pt]
 \tikzstyle{nodered}=[fill=red!20, anchor=base, rounded corners=2pt]
@@ -125,7 +126,7 @@
 %
 \newcommand{\Grad}[1]{\bm{\triangledown_{#1}}}
 \newcommand{\abbrev}[1]{\rm{#1}}
-\newcommand{\argmin}{\mathrm{arg}\min}
+%\newcommand{\argmin}{\mathrm{arg}\min}
 \newcommand{\curly}[1]{\left\{#1\right\}}
 \newcommand{\roundy}[1]{\left(#1\right)}
 \newcommand{\recty}[1]{\left[#1\right]}
@@ -193,10 +194,8 @@
     \includegraphics<3>[height=7cm]{images/radiation_budget.jpg}
   \end{center}    
   \begin{flushright}
-    \only<1-2> {\tiny images taken from
-      http://earthobservatory.nasa.gov/Features/Aerosols/}
-    \only<3> {\tiny image taken from
-      http://calipsooutreach.hamptonu.edu/index.html}
+    \only<1-2> {\tiny http://earthobservatory.nasa.gov/Features/Aerosols/}
+    \only<3> {\tiny http://calipsooutreach.hamptonu.edu/index.html}
   \end{flushright}
 \end{frame}
 
@@ -209,9 +208,8 @@
     \includegraphics<3>[height=7cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
-    \only<1> {\tiny image taken from http://www.wikipedia.com/}
-    \only<2> {\tiny image taken from http://www.wikipedia.com/}
-    \only<3> {\tiny image taken from http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
+    \only<1-2> {\tiny http://www.wikipedia.com/}
+    \only<3> {\tiny http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{flushright}
 \end{frame}
 
@@ -238,8 +236,8 @@
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
       \begin{itemize}
-      \item Use standard cameras
-      \item Visible spectrum
+      \item 3D reconstruction
+      \item Simple setup
       \item Based on Sun light scattering and attenuation
       \end{itemize}
     \end{column}
@@ -252,7 +250,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Simulated Reconstruction}
+\begin{frame}{Simulated Reconstruction}
   \begin{center}
     \only<1>{
       \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
@@ -265,15 +263,19 @@
 
 %%%
 
-\begin{frame}[label=current]{}
-  \centerline{
-    \movie[height=8cm, width=12cm, poster, autostart]{Cloud Reconstruction}{clouds.avi}
-  }
+\begin{frame}{}
+  \includemedia[
+  label=video1,
+  width=1.0\linewidth,height=0.66\linewidth,
+  activate=pageopen,
+  addresource=videos/cloudsnew.mp4,
+  flashvars={source=videos/cloudsnew.mp4}
+  ]{}{VPlayer.swf}
 \end{frame}
 
 %%%
 
-\begin{frame}{Porject Frame}
+\begin{frame}{Project Frame}
   \begin{itemize}
   \item Group
     \begin{itemize}
@@ -282,8 +284,10 @@
     \item Danny Veikherman - Msc Student - Custom hardware.
     \end{itemize}
   \item Publications
+    \begin{itemize}
     \item Presented in the MISR Data Users Science Symposium Dec. 2012, Pasadena, CA, USA
     \item Submitted to the Optics Express Journal.
+    \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -292,52 +296,33 @@
 
 \subsection{Current Recovery Methods}
 
-\begin{frame}{Remote Sensing}
+\begin{frame}[label=current]{Remote Sensing}
   \begin{itemize}
   \item<1> MISR - Multi-angle Imaging SpectroRadiometer
   \end{itemize}
 
   \begin{center}
     \includegraphics<1>[width=\columnwidth]{images/misr.pdf}
+    \includegraphics<2>[width=\columnwidth]{images/misr_od.jpg}
   \end{center}
 
   \begin{flushright}
-    \only<1> {\tiny images taken from http://www-misr.jpl.nasa.gov/}
+    \only<1> {\tiny http://www-misr.jpl.nasa.gov/}
+    \only<2> {\tiny http://earthobservatory.nasa.gov/}
   \end{flushright}
 \end{frame}
 
 %%%
 
 \begin{frame}{LIDAR - Light Detection And Ranging}
-  \begin{itemize}
-  \item<1> From the ground
-  \item<2> From space
-  \end{itemize}
-
   \begin{center}
     \includegraphics<1>[width=\columnwidth]{images/lidar.pdf}
-    \includegraphics<2>[height=5cm]{images/calipso.jpg}
+    \includegraphics<2>[height=7cm]{images/calipso.jpg}
   \end{center}
 
   \begin{flushright}
-    \only<1> {\tiny images taken from
-      http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
-  \end{flushright}
-\end{frame}
-
-%%%
-
-\begin{frame}{Common Atmospheric Models}
-  \begin{itemize}
-  \item<1> 1D or 2D models
-  \end{itemize}
-
-  \begin{center}
-    \includegraphics<1>[height=6cm]{images/atmosphere_layer.jpg}
-  \end{center}
-
-  \begin{flushright}
-    \only<1> {\tiny image taken from the Stratospheric Ozone Electronic Textbook}
+    \only<1> {\tiny http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
+    \only<2> {\tiny http://earthobservatory.nasa.gov/}
   \end{flushright}
 \end{frame}
 
@@ -346,7 +331,7 @@
 \subsection{Related Work}
 
 \begin{frame}{Integral Imaging}
-  \begin{columns}[T]
+  \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
       \item Sample light in space and direction
@@ -366,7 +351,7 @@
 %%%
 
 \begin{frame}{Computed Tomography}
-  \begin{columns}[T]
+  \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
       \item Reconstruct 3D object from a set of projections
@@ -429,6 +414,10 @@
 
 %%%
 
+% TODO improve this:
+% - Explain symbols
+% - Explain better the optical depth
+% 
 \begin{frame}{Attenuation}
   \begin{itemize}
   \item  Light is attenuated according to {\em Beer-Lambert} law
@@ -465,6 +454,10 @@
 
 %%%
 
+%
+% TODO - Improve this
+% Add explaination on the \alpha sign that appears later in the presentation
+%
 \begin{frame}{Scattering}
     \begin{overprint}
       \only<1>
@@ -487,7 +480,7 @@
     \column{0.6\textwidth}
     \begin{itemize}
     \item Rayleigh scattering - for air molecules
-    \item  Henyey-Greenstein equation - for aerosols
+    \item Henyey-Greenstein equation - for aerosols
     \end{itemize}
     \column{0.4\textwidth}
     \centering
@@ -495,19 +488,30 @@
   \end{columns}
 \end{frame}
 
-%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Tomography}
+% TODO Maybe add a simple equation that explains the formation of the projection
 
 \begin{frame}{Attenuation Tomography}
   \begin{center}
-    \includegraphics<1>[height=6cm]{images/ct.png}
+    \includegraphics[height=6cm]{images/ct.png}
   \end{center}
   
   \begin{flushright}
-    \only<1> {\tiny http://medical-dictionary.thefreedictionary.com}
+    \only{\tiny http://medical-dictionary.thefreedictionary.com}
+  \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}{Emission Tomography}
+  \begin{center}
+    \includegraphics[height=6cm]{images/tomography_emission.jpg}
+  \end{center}
+  
+  \begin{flushright}
+    \only{\tiny Gregson at el. \em{Stochastic Tomography and its Applications in 3D Imaging of Mixing Fluids}}
   \end{flushright}
 \end{frame}
 
@@ -536,7 +540,9 @@
   \begin{columns}[C]
     \column{0.4\textwidth}
     \begin{itemize}
-    \item Analytic Model
+    \item Simple
+    \item Fast
+    \item Analytic
     \end{itemize}
 
     \column{0.6\textwidth}
@@ -695,7 +701,9 @@
 
     \column{0.4\textwidth}
     \begin{itemize}
-    \item Physcial Model
+    \item Physical
+    \item Slow
+    \item Not Analytic
     \item Joint work with Mr. Vadim Holodovsky
     \end{itemize}
   \end{columns}
@@ -781,7 +789,74 @@
     \centering
     \only<1>{\includegraphics[height=7cm]{images/challenge1.pdf}}
     \only<2>{\includegraphics[height=7cm]{images/challenge2.pdf}}
+    \only<3>
+    {
+      \begin{itemize}
+      \item Solutions:
+        \begin{enumerate}
+        \item Prior Knowledge
+        \item Large scale solvers
+        \item Parallelize the algorithm
+        \end{enumerate}
+      \end{itemize}
+    }
   \end{center}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=current]{Prior Knowledge}
+  
+  \begin{columns}
+    \column{0.4\paperwidth}
+    \begin{itemize}
+    \item <2-> Known air distribution \tikz[na] \coordinate (known-air);
+    \item <3-> \alert{Single known aerosol particle} \tikz[na] \coordinate (known-part);
+    \item <5-> Smoothness 
+    \end{itemize}
+    
+    \column{0.45\paperwidth}
+    \tikzstyle{background grid}=[draw, black!50,step=.5cm]
+    \begin{tikzpicture}%[show background grid]
+      % Put the graphic inside a node. This makes it easy to place the
+      % graphic and to draw on top of it. 
+      % The above right option is used to place the lower left corner
+      % of the image at the (0,0) coordinate. 
+      \onslide<4->{      
+        \node [inner sep=0pt,above right] 
+        {\centerline{\def\svgwidth{4cm}\input{images/challenge_only_n.pdf_tex}}};
+      }
+
+      % define destination coordinates
+      \path (0.75, 2.25) coordinate (only-n-up)
+            (0.75, 1.00) coordinate (only-n-down);
+    \end{tikzpicture}
+
+    % define overlays
+    % Note the use of the overlay option. This is required when 
+    % you want to access nodes in different pictures.
+    \begin{tikzpicture}[overlay]
+      \onslide<4->{
+        \path[->,blue,thick] (known-air) edge [bend left] (only-n-up);
+        \path[->,red,thick] (known-part) edge [bend right] (only-n-down);
+      }
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=current]{Optimization}
+  \begin{itemize}
+  \item L-BFGS-B
+    \begin{thebibliography}{blablabla}
+    \bibitem[blablabla]{blablabla}
+      R. H. Byrd, P. Lu and J. Nocedal.
+      \newblock A Limited Memory Algorithm for Bound Constrained Optimization.
+      \newblock {\em SIAM Journal on Scientific and Statistical Computing}, 1995.
+    \end{thebibliography}
+  \item Requires only the objective and its gradient
+  \end{itemize}
 \end{frame}
 
 %%%
@@ -789,30 +864,68 @@
 \begin{frame}[label=objective]{Formulation}
   \begin{block}{Objective Function}
     \begin{equation*}
-      \CostFunc{\DistUnknown}
-      = \sum_{c=1}^{N_{\rm views}}
-      \left\|
-        \tikz[baseline]{ \node[na] (d1) {$\MaskSun$};}[{\bm i}^{\rm measured}_c - {\bm i}_c({\bm n})]
-      \right\|^2_2  + \eta \tikz[baseline]{ \node[na] (d2) {$\Psi$};}({\bm n})
+      \only<1-5>{
+        \CostFunc{\DistUnknown}
+        = \sum_{c=1}^{N_{\rm views}}
+        \left\|
+          \tikz[baseline]{[\node[na] (d-im) {${\bm i}^{\rm measured}_c$};} - 
+          \tikz[baseline]{[\node[na] (d-ie) {${\bm i}_c$};}
+          \tikz[baseline]{[\node[na] (d-un1) {$({\bm n})$};}
+        \right\|^2_2  + \eta \tikz[baseline]{ \node[na] (d2) {$\Psi$};}
+        \tikz[baseline]{[\node[na] (d-un2) {$({\bm n})$};}
+      }
+      \only<6->
+      {
+        \CostFunc{\DistUnknown}
+        = \sum_{c=1}^{N_{\rm views}}
+        \left\|
+          \tikz[baseline]{ \node[na] (d1) {$\MaskSun$};}[{\bm i}^{\rm measured}_c - {\bm i}_c({\bm n})]
+        \right\|^2_2  + \eta \Psi ({\bm n})
+      }
     \end{equation*}
   \end{block}
-  \begin{block}{Estimated Aerosols}
-    \begin{equation*}
-      \DistEstimated =
-      \argmin_{\DistUnknown \in \DistSet} \CostFunc{\DistUnknown}
-    \end{equation*}
-  \end{block}
-  \begin{tikzpicture}[overlay] \pause
-    \node[nodeblue] at (3,5.5) (s1) {\hyperlink{mask}{M.S. Mask}};
-    \path[->] (s1) edge [bend left] (d1); \pause
-    \node[nodeyellow] at (8,5.5)(s2) {\hyperlink{regularization}{Regularizer}};
-    \path[->] (s2) edge [bend left] (d2);
+  \onslide<7>
+  {
+    \begin{block}{Estimated Aerosols}
+      \begin{equation*}
+        \DistEstimated =
+        \argmin_{\DistUnknown \in \DistSet} \CostFunc{\DistUnknown}
+      \end{equation*}
+    \end{block}
+  }
+  \begin{tikzpicture}[overlay]
+    \onslide<2>
+    {
+      \node[nodeyellow] at (4,1.5)(s1) {\hyperlink{ref_images}{Reference Image}};
+      \path[->] (s1) edge [bend right] (d-im);
+    }
+    \onslide<3>
+    {
+      \node[nodeyellow] at (8,1.5)(s2) {Estimated Image};
+      \path[->] (s2) edge [bend left] (d-ie);
+    }
+    \onslide<4>
+    {
+      \node[nodered] at (6,1.5)(s3) {Unkown Aerosols Density};
+      \path[->] (s3) edge [bend left] (d-un1);
+      \path[->] (s3) edge [bend right] (d-un2);
+    }
+    \onslide<5>
+    {
+      \node[nodeblue] at (8,5.5)(s4) {\hyperlink{regularization}{Smoothness Constrain}};
+      \path[->] (s4) edge [bend left] (d2);
+    }
+    \onslide<6>
+    {
+      \node[nodeblue] at (5,5.7) (s5) {\hyperlink{mask}{Multi-Scatter Mask}};
+      \path[->] (s5) edge [bend right] (d1);
+    }
   \end{tikzpicture}
 \end{frame}
 
 %%%
 
-\begin{frame}[label=gradient]{Optimization}
+\begin{frame}[label=current]{Optimization}
   \begin{block}{Gradient}
     \begin{align*}
       \Grad{{\bm n}} E &= \\
@@ -832,8 +945,8 @@
     \column{0.8\textwidth}
     \begin{itemize}
     \item Processed using a computer cluster
-    \item Each synthetic camera processed on a separate core
-    \item Up to 100 cores = 100 synthetic cameras
+    \item Each `camera' processed on a separate core
+    \item Up to 100 cores = 100 simulated cameras
     \item A couple of hours to reconstruct 250K voxels
     \end{itemize}
 
@@ -877,28 +990,35 @@
 
 \subsection{Empirical Validation}
 
-\begin{frame}[label=current]{Experiment}
-  \begin{columns}[T]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Grab multiple images from moving car
-      \item Images registered using GPS and/or SfM tools
-      \item Compare to ground truth
+\begin{frame}{Experiment}
+  \only<1>
+  {
+    \centering
+    \includegraphics[height=7cm]{images/diagram_experiment2.pdf}    
+  }
+  \only<2>
+  {
+    \begin{columns}[C]
+      \begin{column}{.7\textwidth}
         \begin{itemize}
-        \item MISR
-        \item LIDAR
-        \item AERONET
+        \item Grab multiple images from moving car
+        \item Register images using GPS and/or SfM tools
+        \item Collect ground truth
+          \begin{itemize}
+          \item MISR
+          \item LIDAR
+          \item AERONET
+          \end{itemize}
         \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \centering
-      \includegraphics[height=0.30\textheight]{DSC_0688.JPG}
-      \captionof{figure}{}
-      \includegraphics[height=0.30\textheight]{AERONET.jpg}
-      \captionof{figure}{}
-    \end{column}
-  \end{columns}
+      \end{column}
+      \begin{column}{.3\textwidth}
+        \centering
+        \includegraphics[height=0.30\textheight]{DSC_0688.JPG}\\
+        \includegraphics[height=0.30\textheight]{AERONET.jpg}
+        \captionof{figure}{\tiny http://earthobservatory.nasa.gov/}
+      \end{column}
+    \end{columns}
+  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -907,6 +1027,8 @@
 
 \begin{frame}{Model Extension}
   \begin{itemize}
+  \item Ground BRDF
+  \item Infinite Atmosphere
   \item Multiple particles
     \begin{itemize}
     \item Martonchik at el. 1998
@@ -945,6 +1067,10 @@
 
 %%%
 
+%
+% TODO
+% Add refernces to the corresponding images 
+%
 \begin{frame}{Reconstruction}
 
   \begin{itemize}
@@ -965,8 +1091,13 @@
 
 %%%
 
-\begin{frame}[label=current]{Reconstructed Clouds}
-  \centerline{\movie[height=7cm, width=12cm, poster, autostart]{Cloud Reconstruction}{cloudsnew.avi}}
+\begin{frame}{}
+  \includemedia[
+  width=1.0\linewidth,height=0.66\linewidth,
+  activate=pageopen,
+  addresource=videos/cloudsnew.mp4,
+  flashvars={source=videos/cloudsnew.mp4}
+  ]{}{VPlayer.swf}
 \end{frame}
 
 %%%
@@ -1005,6 +1136,8 @@
   \hfill\hyperlink{gradient}{\beamerreturnbutton{Return}}
 \end{frame}
 
+%%%
+
 \begin{frame}[label=mask]{Multi-Scattering Mask}
   \begin{itemize}
   \item Weight error by Single-Scattering dominance
@@ -1013,6 +1146,8 @@
   \centerline{\includegraphics[height=4cm]{images/sun_mask.pdf}}
   \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}} 
 \end{frame}
+
+%%%
 
 \begin{frame}[label=regularization]{Regularization}
   \begin{itemize}
@@ -1024,6 +1159,39 @@
 
   \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}}
 \end{frame}
+
+%%%
+
+\begin{frame}[label=ref_images]{Refernce Image}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \centering
+        \includegraphics[height=0.60\textheight]{images/result_mc.pdf}
+        \captionof{figure}{Monte Carlo Model}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \centering
+        \includegraphics[height=0.60\textheight]{images/result_single.pdf}
+        \captionof{figure}{Single Scattering Model}
+    \end{column}
+  \end{columns}
+
+  \hfill\hyperlink{objective<2>}{\beamerreturnbutton{Return}}
+\end{frame}
+
+% \begin{frame}{Common Atmospheric Models}
+%   \begin{itemize}
+%   \item<1> 1D or 2D models
+%   \end{itemize}
+
+%   \begin{center}
+%     \includegraphics<1>[height=6cm]{images/atmosphere_layer.jpg}
+%   \end{center}
+
+%   \begin{flushright}
+%     \only<1> {\tiny image taken from the Stratospheric Ozone Electronic Textbook}
+%   \end{flushright}
+% \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
