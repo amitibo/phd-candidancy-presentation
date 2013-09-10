@@ -8,82 +8,7 @@
 % Beamer default paper size is 128mm by 96mm
 %
 
-\usetheme{Singapore}
-% other themes: AnnArbor, Antibes, Bergen, Berkeley, Berlin,
-%               Boadilla, boxes, CambridgeUS, Copenhagen,
-%               Darmstadt, default, Dresden, Frankfurt, Goettingen,
-%               Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe,
-%               Marburg, Montpellier, PaloAlto, Pittsburg, Rochester,
-%               Singapore, Szeged, classic
-
-\usecolortheme{seahorse}
-% color themes: albatross, beaver, beetle, crane, default, dolphin, dov,
-%               fly, lily, orchid, rose, seagull, seahorse, sidebartab,
-%               structure, whale, wolverine
-
-\usefonttheme{structurebold}
-% font themes: default, professionalfonts, serif, structurebold,
-%               structureitalicserif, structuresmallcapsserif
-
-%
-% uncomment to go automatically to full screen
-%
-%\hypersetup{pdfpagemode=FullScreen}
-
-% define your own colors:
-\definecolor{Red}{rgb}{1,0,0}
-\definecolor{Blue}{rgb}{0,0,1}
-\definecolor{Green}{rgb}{0,1,0}
-\definecolor{magenta}{rgb}{1,0,.6}
-\definecolor{lightblue}{rgb}{0,.5,1}
-\definecolor{lightpurple}{rgb}{.6,.4,1}
-\definecolor{gold}{rgb}{.6,.5,0}
-\definecolor{orange}{rgb}{1,0.4,0}
-\definecolor{hotpink}{rgb}{1,0,0.5}
-\definecolor{newcolor2}{rgb}{.5,.3,.5}
-\definecolor{newcolor}{rgb}{0,.3,1}
-\definecolor{newcolor3}{rgb}{1,0,.35}
-\definecolor{darkgreen1}{rgb}{0, .35, 0}
-\definecolor{darkgreen}{rgb}{0, .6, 0}
-\definecolor{darkred}{rgb}{.75,0,0}
-
-\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
-\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
-
-% can also choose different themes for the "inside" and "outside"
-
-% \usepackage{beamerinnertheme_______}
-% inner themes include circles, default, inmargin, rectangles, rounded
-\useinnertheme{circles}
-
-% \usepackage{beamerouterthemesmoothbars}
-% outer themes include default, infolines, miniframes, shadow, sidebar,
-%               smoothbars, smoothtree, split, tree
-%\useoutertheme{miniframes}
-
-% to have the same footer on all slides
-%\setbeamertemplate{footline}[text line]{STUFF HERE!}
-%\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
-%\setbeamertemplate{footline}{\scriptsize{\vspace*{0.4cm}\hspace*{0.3cm}\insertframenumber}} 
-\setbeamertemplate{footline}{\insertpagenumber}
-
-%
-% Automatic Outline
-%
-\AtBeginSection[section]
-{
-  \begin{frame}{}
-    \begin{center}
-      {\huge \insertsectionhead}
-      \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/show/hide]
-    \end{center}
-  \end{frame}
-}
-
-%
-% For speed up of compilation
-%
-%\includeonlyframes{current}
+\input{custom_beamer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%% Pacakges  %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,55 +28,20 @@
 \usepackage{media9}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[overlay,absolute]{textpos}
 \usepackage{tikz}
-\usetikzlibrary{arrows,shapes,backgrounds}
+\usetikzlibrary{arrows,shapes,shapes.callouts,decorations.pathmorphing,backgrounds}
 \tikzstyle{every picture}+=[remember picture]
 \tikzstyle{na} = [baseline=-.5ex]
 \usepackage{cancel}
 
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
-\DeclareMathOperator*{\argmin}{\arg\!\min}
-
-\tikzstyle{nodeblue}=[fill=blue!20, anchor=base, rounded corners=2pt]
-\tikzstyle{nodered}=[fill=red!20, anchor=base, rounded corners=2pt]
-\tikzstyle{nodegreen}=[fill=green!20, anchor=base, rounded corners=2pt]
-\tikzstyle{nodeyellow}=[fill=yellow!20, anchor=base, rounded corners=2pt]
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%% Custom Commands I Use  %%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Note:
-% Nice curly font is {\bm{\mathcal{D}}}
-%
-\newcommand{\Grad}[1]{\bm{\triangledown_{#1}}}
-\newcommand{\abbrev}[1]{\rm{#1}}
-%\newcommand{\argmin}{\mathrm{arg}\min}
-\newcommand{\curly}[1]{\left\{#1\right\}}
-\newcommand{\roundy}[1]{\left(#1\right)}
-\newcommand{\recty}[1]{\left[#1\right]}
-\newcommand{\PartDeriv}[2]{\frac{\partial{#1}}{\partial{#2}}}
-\newcommand{\vect}[1]{\bm{#1}}
-\newcommand{\mat}[1]{\bm{#1}}
-\newcommand{\transpose}[1]{{#1}^\intercal}
-\newcommand{\derivsym}[1]{\,d{#1}}
+\input{custom_tikz}
+\input{custom_commands}
 
 %
-% Used symbols (only partial for now...)
+% To speed up of compilation
 %
-\newcommand{\OpSphere}{\mathbfcal{S}}
-\newcommand{\OpRot}{\mathbfcal{R}}
-\newcommand{\OpDistance}{\bm{D}}
-\newcommand{\OpCumsum}{\mathbfcal{C}}
-\newcommand{\OpInt}{\mathbfcal{I}}
-\newcommand{\OpCamera}{\mathbfcal{P}}
-\newcommand{\MaskSun}{\mathbfcal{M}}
-\newcommand{\Laplacian}{\mathbfcal{L}}
-\newcommand{\OpDiag}[1]{\mathbb{D}\left\{#1\right\}}
-\newcommand{\DistSet}{\mathcal{C}}
-\newcommand{\DistUnknown}{\vect{n}}
-\newcommand{\DistEstimated}{\hat{\vect{n}}}
-\newcommand{\CostFunc}[1]{E(#1)}
+\includeonlyframes{current}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -187,35 +77,30 @@
 
 \subsection{Motivation}
 
-\begin{frame}{Aerosols in the Atmosphere}
+\begin{frame}[label=motivation]{Aerosols in the Atmosphere}
   \begin{center}
-    \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
-    \includegraphics<2>[height=7cm]{images/shenzen_haze.jpg}
-    \includegraphics<3>[height=7cm]{images/radiation_budget.jpg}
+    \includegraphics[height=7cm]{images/shenzen_haze.jpg}
   \end{center}    
-  \begin{flushright}
-    \only<1-2> {\tiny http://earthobservatory.nasa.gov/Features/Aerosols/}
-    \only<3> {\tiny http://calipsooutreach.hamptonu.edu/index.html}
-  \end{flushright}
+  \begin{center}
+    \hyperlink{aerosols-data}{\beamergotobutton{Aerosols Info}}\hfill
+    {\tiny http://earthobservatory.nasa.gov/Features/Aerosols/}
+  \end{center}
 \end{frame}
 
 %%%
 
 \begin{frame}{Eyjafjallaj\"{o}kull Eruption in 2010}
   \begin{center}
-    \includegraphics<1>[height=7cm]{images/1024px-Eyjafjallajokull_volcano_plume.jpg}
-    \includegraphics<2>[height=7cm]{images/Volcanic_Lavender.jpg}
-    \includegraphics<3>[height=7cm]{images/volcano-airport.jpg}
+    \includegraphics[height=7cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
-    \only<1-2> {\tiny http://www.wikipedia.com/}
-    \only<3> {\tiny http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
+    {\tiny http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{flushright}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Suggested Method}
+\subsection{PhD Task}
 
 \begin{frame}{Multi-angle Tomographic Reconstruction}
   \begin{center}
@@ -250,7 +135,7 @@
 
 %%%
 
-\begin{frame}{Simulated Reconstruction}
+\begin{frame}[label=current]{Simulated Reconstruction}
   \begin{center}
     \only<1>{
       \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
@@ -258,6 +143,9 @@
     \only<2>{
       \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot2_}{0}{35}
     }
+  \end{center}
+  \begin{center}
+    \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
   \end{center}
 \end{frame}
 
@@ -275,41 +163,38 @@
 
 %%%
 
-\begin{frame}{Project Frame}
-  \begin{itemize}
-  \item Group
-    \begin{itemize}
-    \item Amit Aides - PhD Candidate - Analysis algorithm, Experiments.
-    \item Vadim Holodovsky - Msc Student - Monte Carlo simulations.
-    \item Danny Veikherman - Msc Student - Custom hardware.
-    \end{itemize}
-  \item Publications
-    \begin{itemize}
-    \item Presented in the MISR Data Users Science Symposium Dec. 2012, Pasadena, CA, USA
-    \item Submitted to the Optics Express Journal.
-    \end{itemize}
-  \end{itemize}
-
+\begin{frame}[label=current]{}
+  \begin{center}
+    \begin{block}{Publications}
+      \begin{itemize}
+      \item Presented in the MISR Data Users Science Symposium Dec. 2012, Pasadena, CA, USA
+      \item In review, Optics Express.
+      \end{itemize}
+    \end{block}
+  \end{center}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Current Recovery Methods}
+\subsection{State of The Art}
+
+\TitleFrame{}{State of The Art}
 
 \begin{frame}[label=current]{Remote Sensing}
-  \begin{itemize}
-  \item<1> MISR - Multi-angle Imaging SpectroRadiometer
-  \end{itemize}
-
   \begin{center}
-    \includegraphics<1>[width=\columnwidth]{images/misr.pdf}
-    \includegraphics<2>[width=\columnwidth]{images/misr_od.jpg}
+    \includegraphics[width=0.9\textwidth]{images/misr.pdf}
   \end{center}
-
   \begin{flushright}
-    \only<1> {\tiny http://www-misr.jpl.nasa.gov/}
-    \only<2> {\tiny http://earthobservatory.nasa.gov/}
+    {\tiny http://earthobservatory.nasa.gov/}
   \end{flushright}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Low resolution \\
+      2D reconstruction \\
+      Top viewing point \\
+      Expensive}
+  }
 \end{frame}
 
 %%%
@@ -861,7 +746,7 @@
 
 %%%
 
-\begin{frame}[label=objective]{Formulation}
+\begin{frame}[label=objective]{Optimization}
   \begin{block}{Objective Function}
     \begin{equation*}
       \only<1-5>{
@@ -959,26 +844,35 @@
 
 %%%
 
-\begin{frame}{Results - Original Atmospheres}
-  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
-  \centerline{\footnotesize Color represents aerosol density. The
-    density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
+\begin{frame}[label=current]{Results - Original Atmospheres}
+  \begin{center}
+    \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
+  \end{center}
+  \begin{center}
+    \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
+  \end{center}
 \end{frame}
 
 %%%
 
 \begin{frame}{Results - Single-scattering Simulations}
-  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
-  \centerline{\footnotesize Color represents aerosol density. The
-    density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
+  \begin{center}
+    \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_single.pdf_tex}}}
+  \end{center}
+  \begin{center}
+    \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
+  \end{center}
 \end{frame}
 
 %%%
 
 \begin{frame}{Results - Monte-Carlo Simulations}
-  \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
-  \centerline{\footnotesize Color represents aerosol density. The
-    density units are $10^{6}~{\rm particles}/{\rm m}^3.$}
+  \begin{center}
+    \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
+  \end{center}
+  \begin{center}
+    \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
+  \end{center}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1178,6 +1072,25 @@
 
   \hfill\hyperlink{objective<2>}{\beamerreturnbutton{Return}}
 \end{frame}
+
+%%%
+
+\begin{frame}[label=aerosols-data]{Aerosols Info}
+  %
+  % TODO - Add common aerosol sizes and quantities
+  %
+  \begin{center}
+    \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
+    \includegraphics<2>[height=7cm]{images/radiation_budget.jpg}
+  \end{center}    
+  \begin{flushright}
+    \only<1> {\tiny http://earthobservatory.nasa.gov/Features/Aerosols/}
+    \only<2> {\tiny http://calipsooutreach.hamptonu.edu/index.html}
+  \end{flushright}
+  \hfill\hyperlink{motivation}{\beamerreturnbutton{Return}}
+\end{frame}
+
+%%%
 
 % \begin{frame}{Common Atmospheric Models}
 %   \begin{itemize}

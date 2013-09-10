@@ -1,0 +1,19 @@
+\tikzstyle{nodeblue}=[fill=blue!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodered}=[fill=red!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodegreen}=[fill=green!20, anchor=base, rounded corners=2pt]
+\tikzstyle{nodeyellow}=[fill=yellow!20, anchor=base, rounded corners=2pt]
+
+\newcommand{\CloudNote}[3]{
+  \begin{tikzpicture}[overlay,remember picture, every text node part/.style={align=center}]
+    \pgftransformshift{\pgfpointanchor{current page}{center}}
+    \node[
+    starburst,
+    draw=black,
+    ultra thick,
+    fill=red,
+    text width=#1,
+    align=center,
+    anchor=center
+    ] at (#2) {#3};
+  \end{tikzpicture}
+}

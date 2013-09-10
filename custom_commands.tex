@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% Custom Commands I Use  %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+%
+% Note:
+% Nice curly font is {\bm{\mathcal{D}}}
+%
+\newcommand{\Grad}[1]{\bm{\triangledown_{#1}}}
+\newcommand{\abbrev}[1]{\rm{#1}}
+%\newcommand{\argmin}{\mathrm{arg}\min}
+\newcommand{\curly}[1]{\left\{#1\right\}}
+\newcommand{\roundy}[1]{\left(#1\right)}
+\newcommand{\recty}[1]{\left[#1\right]}
+\newcommand{\PartDeriv}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\bm{#1}}
+\newcommand{\transpose}[1]{{#1}^\intercal}
+\newcommand{\derivsym}[1]{\,d{#1}}
+
+%
+% Used symbols (only partial for now...)
+%
+\newcommand{\OpSphere}{\mathbfcal{S}}
+\newcommand{\OpRot}{\mathbfcal{R}}
+\newcommand{\OpDistance}{\bm{D}}
+\newcommand{\OpCumsum}{\mathbfcal{C}}
+\newcommand{\OpInt}{\mathbfcal{I}}
+\newcommand{\OpCamera}{\mathbfcal{P}}
+\newcommand{\MaskSun}{\mathbfcal{M}}
+\newcommand{\Laplacian}{\mathbfcal{L}}
+\newcommand{\OpDiag}[1]{\mathbb{D}\left\{#1\right\}}
+\newcommand{\DistSet}{\mathcal{C}}
+\newcommand{\DistUnknown}{\vect{n}}
+\newcommand{\DistEstimated}{\hat{\vect{n}}}
+\newcommand{\CostFunc}[1]{E(#1)}
+
