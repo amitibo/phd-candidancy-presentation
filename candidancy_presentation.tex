@@ -38,7 +38,7 @@
 %
 % To speed up of compilation
 %
-%\includeonlyframes{current}
+\includeonlyframes{current}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -89,7 +89,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[label=current]{Eyjafjallaj\"{o}kull Eruption in 2010}
+\begin{frame}{Eyjafjallaj\"{o}kull Eruption in 2010}
   \begin{center}
     \includegraphics[height=7cm]{images/volcano-airport.jpg}
   \end{center}
@@ -262,7 +262,19 @@
   \begin{block}{Light is attenuated according to {\em Beer-Lambert} law}
     \centerline{\def\svgwidth{0.6\columnwidth}\small{\input{images/beer_lambert.pdf_tex}}}
   \end{block}
-  \onslide<2>
+  \begin{tikzpicture}[overlay]
+    \onslide<2->
+    {
+      \node[nodeblue] at (4,0)(s1) {Cross Section};
+      \path[->] (s1) edge [bend right] (d1);
+    }
+    \onslide<3->
+    {
+      \node[nodered] at (7,-0.5)(s2) {Density};
+      \path[->] (s2) edge [bend right] (d2);
+    }
+  \end{tikzpicture}
+  \onslide<4>
   {
     \begin{block}{Optical Depth}    
       \begin{align*}
@@ -279,7 +291,7 @@
 % TODO - Improve this
 % Add explaination on the \alpha sign that appears later in the presentation
 %
-\begin{frame}{Scattering}
+\begin{frame}[label=current]{Scattering}
     \begin{overprint}
       \only<1>
       {
@@ -394,7 +406,7 @@
 
 %%%
 
-\begin{frame}{Image Formation Model}
+\begin{frame}[label=current]{Image Formation Model}
   \begin{columns}[c]
 
     \column{0.7\textwidth}
@@ -407,11 +419,11 @@
     \footnotesize
     \begin{align*}
       \mathrm{I} &= \\
-      & \tikz[baseline]{ \node[nodeblue] (d1) {$\mathrm{L}^{\rm TOA}$}; } \,
-      \tikz[baseline]{ \node[nodered] (d4) {$\OpCamera$}; }
+      & \tikz[baseline]{ \node[nodeblue, visible on=<2->] (d1) {$\mathrm{L}^{\rm TOA}$}; } \,
+      \tikz[baseline]{ \node[nodered, visible on=<5->] (d4) {$\OpCamera$}; }
       \curly{\roundy{
-          \tikz[baseline]{ \node[nodegreen] (d3) {$\vect{\alpha}^{\rm aerosol} + \vect{\alpha}^{\rm air}$}; } }  \odot 
-        \tikz[baseline]{ \node[nodeyellow] (d2) {$\exp^{-(\vect{\tau}^{\rm aerosol} + \vect{\tau}^{\rm air})}$}; } }
+          \tikz[baseline]{ \node[nodegreen, visible on=<4->] (d3) {$\vect{\alpha}^{\rm aerosol} + \vect{\alpha}^{\rm air}$}; } }  \odot 
+        \tikz[baseline]{ \node[nodeyellow, visible on=<3->] (d2) {$\exp^{-(\vect{\tau}^{\rm aerosol} + \vect{\tau}^{\rm air})}$}; } }
     \end{align*}
     \normalsize
 
@@ -432,9 +444,9 @@
       \only<1-2> {\centerline{\includegraphics[width=\columnwidth]
           {images/atmo_settings3D2.pdf}}}
       \only<3> {\centerline{\includegraphics[width=\columnwidth]
-          {images/atmo_settings3D3.pdf}}}
+          {images/atmo_settings3D10.pdf}}}
       \only<4-> {\centerline{\includegraphics[width=\columnwidth]
-          {images/atmo_settings3D5.pdf}}}
+          {images/atmo_settings3D11.pdf}}}
     \end{overprint}
 
   \end{columns}

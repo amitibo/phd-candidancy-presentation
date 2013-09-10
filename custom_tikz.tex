@@ -24,3 +24,11 @@
     ] at (#2) {#3};
   \end{tikzpicture}
 }
+
+\tikzset{
+  invisible/.style={fill=white},
+  visible on/.style={alt=#1{}{invisible}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}

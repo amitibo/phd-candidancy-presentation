@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="atmo_settings3D.svg">
+   sodipodi:docname="atmo_settings3D10.pdf">
   <defs
      id="defs4">
     <marker
@@ -170,7 +170,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-141.33255"
+     inkscape:cx="-305.61826"
      inkscape:cy="151.0195"
      inkscape:document-units="px"
      inkscape:current-layer="layer13"
@@ -517,7 +517,7 @@
      inkscape:groupmode="layer"
      id="layer13"
      inkscape:label="scatter1"
-     style="display:none"
+     style="display:inline"
      transform="translate(-4.7478461,325.50425)"
      sodipodi:insensitive="true">
     <g
@@ -566,7 +566,7 @@
      id="layer14"
      inkscape:label="light2"
      transform="translate(-4.7478461,325.50425)"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <path
        style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#marker3097);display:inline"
@@ -644,7 +644,7 @@
      inkscape:groupmode="layer"
      id="layer18"
      inkscape:label="multiscatter"
-     style="display:inline"
+     style="display:none"
      transform="translate(-4.7478461,206.00425)"
      sodipodi:insensitive="true">
     <path
@@ -700,7 +700,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="cross"
-     style="display:inline">
+     style="display:none">
     <g
        id="g3930"
        transform="translate(-16.162441,-162.63456)">
@@ -793,7 +793,7 @@
          sodipodi:open="true"
          sodipodi:end="6.2717914"
          sodipodi:start="0"
-         d="m 250,72.362183 c 0,11.045695 -8.95431,20 -20,20 -11.04569,0 -20,-8.954305 -20,-20 0,-11.045695 8.95431,-20 20,-20 10.95681,0 19.87386,8.81603 19.9987,19.772126"
+         d="m 250,72.362183 a 20,20 0 1 1 -0.001,-0.227874"
          sodipodi:ry="20"
          sodipodi:rx="20"
          sodipodi:cy="72.362183"
