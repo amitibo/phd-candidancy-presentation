@@ -4,6 +4,7 @@
 
 \documentclass[compress,red,12pt]{beamer}
 \mode<presentation>
+
 %
 % Beamer default paper size is 128mm by 96mm
 %
@@ -37,7 +38,7 @@
 %
 % To speed up of compilation
 %
-\includeonlyframes{typical-concentrations}
+%\includeonlyframes{current}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -131,7 +132,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Simulated Reconstruction}
+\begin{frame}{Simulated Reconstruction}
   \begin{center}
     \only<1>{
       \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
@@ -159,7 +160,7 @@
 
 %%%
 
-\begin{frame}[label=current]{}
+\begin{frame}{}
   \begin{center}
     \begin{block}{Publications}
       \begin{itemize}
@@ -176,7 +177,7 @@
 
 \TitleFrame{}{State of The Art}
 
-\begin{frame}[label=current]{Remote Sensing}
+\begin{frame}{Remote Sensing}
   \begin{center}
     \includegraphics[width=0.9\textwidth]{images/misr.pdf}
   \end{center}
@@ -195,7 +196,7 @@
 
 %%%
 
-\begin{frame}[label=current]{LIDAR - Light Detection And Ranging}
+\begin{frame}{LIDAR - Light Detection And Ranging}
   \begin{center}
     \includegraphics[width=0.9\columnwidth]{images/lidar.pdf}
   \end{center}
@@ -209,34 +210,6 @@
     \CloudNote{0.4\textwidth}{0, 0}{
       Local \\
       Expensive}
-  }
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Related Work}
-
-\begin{frame}[label=current]{Integral Imaging, Light-Field, Plenoptic}
-  \begin{columns}[C]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Sample light in space and direction
-      \item Enables re-focus, depth recovery, etc
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \centering
-      \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
-      \captionof{figure}{\tiny http://graphics.stanford.edu/}
-      \includegraphics[height=0.30\textheight]{light-field-camera.jpg}
-      \captionof{figure}{\tiny http://lightfield-forum.com}
-    \end{column}
-  \end{columns}
-  \only<2>
-  {
-    \CloudNote{0.3\textwidth}{0, 0}{
-      Small scale
-    }
   }
 \end{frame}
 
@@ -473,7 +446,7 @@
 
 %%%
 
-\begin{frame}{Simulation Settings}
+\begin{frame}[label=settings]{Simulation Settings}
   \begin{center}
     \begin{overlayarea}{\columnwidth}{8cm}
         \only<1>
@@ -483,9 +456,18 @@
         \only<3>
         {\centerline{\includegraphics[width=\columnwidth]{images/voxels3.pdf}}}
         \only<4>
-        {\centerline{\includegraphics[width=\columnwidth]{images/voxels4.pdf}}}
+        {
+          \hfill\hyperlink{air-density}{\beamergotobutton{Air Density}}  
+          \centerline{\includegraphics[width=\columnwidth]{images/voxels4.pdf}}
+        }
         \only<5>
-        {\centerline{\includegraphics[width=\columnwidth]{images/voxels5.pdf}}}
+        {
+          \hfill\hyperlink{typical-concentrations}{\beamergotobutton{Aerosol Distribution}}  
+          \centerline{\includegraphics[width=\columnwidth]{images/voxels5.pdf}}
+          \begin{center}
+            \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
+          \end{center}
+        }
     \end{overlayarea}
   \end{center}
 \end{frame}
@@ -625,71 +607,113 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Tomography}
+\subsubsection{Tomography}
 % TODO Maybe add a simple equation that explains the formation of the projection
 
-\begin{frame}{Attenuation Tomography}
-  \begin{center}
+\begin{frame}[label=current]{Tomography}
+  \begin{block}{}
+    Reconstruct 3D object from its set of projections    
+  \end{block}
+\end{frame}
+
+\begin{frame}[label=current]{Attenuation Tomography}
+  \begin{columns}
+    \column{.5\textwidth}
     \includegraphics[height=6cm]{images/ct.png}
-  \end{center}
-  
+    \column{.5\textwidth}
+    \includegraphics[height=5cm]{images/ct.jpg}
+  \end{columns}  
   \begin{flushright}
     \only{\tiny http://medical-dictionary.thefreedictionary.com}
   \end{flushright}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Attenuation based \\
+      Linear problem
+    }
+  }
 \end{frame}
 
 %%%
 
-\begin{frame}{Emission Tomography}
-  \begin{center}
-    \includegraphics[height=6cm]{images/tomography_emission.jpg}
-  \end{center}
-  
-  \begin{flushright}
-    \only{\tiny Gregson at el. \em{Stochastic Tomography and its Applications in 3D Imaging of Mixing Fluids}}
-  \end{flushright}
+\begin{frame}[label=current]{Emission Tomography}
+  \begin{columns}
+    \column{.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\columnwidth]{images/tomography_emission.jpg}
+      \captionof{figure}{\tiny Gregson at el. 2010}
+    \end{center}
+    \column{.5\textwidth}    
+    \begin{center}
+      \includegraphics[height=0.40\textheight]{gas.jpg}
+      \captionof{figure}{\tiny Cosofret at el. 2009}
+    \end{center}
+  \end{columns}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      No scattering \\
+      Linear problem
+    }
+  }
 \end{frame}
 
 %%%
 
-\begin{frame}{Computed Tomography}
+\begin{frame}[label=current]{Optical Tomography}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
-      \item Reconstruct 3D object from a set of projections
-      \item Usually assumes attenuation
-      \item Optical Tomography assumes a scattering medium
+      \item Optical Tomography assumes a highly scattering medium
       \end{itemize}
     \end{column}
     \begin{column}{.3\textwidth}
       \centering
-      \includegraphics[height=0.40\textheight]{ct.jpg}
-      \captionof{figure}{}
       \includegraphics[height=0.30\textheight]{Optical_Tomography.png}
-      \captionof{figure}{}
     \end{column}
   \end{columns}  
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Diffuse approximation \\
+      Controlled source
+    }
+  }
+\end{frame}
+
+%%%
+ 
+\begin{frame}[label=current]{Integral Imaging, Light-Field, Plenoptic}
+  \begin{columns}[C]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Sample light in space and direction
+      \item Enables re-focus, depth recovery, etc
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
+      \captionof{figure}{\tiny http://graphics.stanford.edu/}
+      \includegraphics[height=0.30\textheight]{light-field-camera.jpg}
+      \captionof{figure}{\tiny http://lightfield-forum.com}
+    \end{column}
+  \end{columns}
+  \only<2>
+  {
+    \CloudNote{0.3\textwidth}{0, 0}{
+      Small scale
+    }
+  }
 \end{frame}
 
 %%%
 
-\begin{frame}[T]{Tomographic Reconstruction of Gas Plumes}
-  \begin{columns}[T]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Usually done in UV range
-      \item Simpler transfer model:
-        \begin{itemize}
-        \item Only scattering
-        \item Only emission and attenuation
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \includegraphics[height=0.40\textheight]{gas.jpg}
-      \captionof{figure}{\tiny Cosofret at el. 2009}
-    \end{column}
-  \end{columns}    
+\begin{frame}{Multi-angle Tomographic Reconstruction}
+  \begin{center}
+    \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network2.pdf_tex}}}
+  \end{center}
 \end{frame}
 
 %%%
@@ -715,7 +739,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Prior Knowledge}
+\begin{frame}{Prior Knowledge}
   
   \begin{columns}
     \column{0.4\paperwidth}
@@ -756,7 +780,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Optimization}
+\begin{frame}{Optimization}
   \begin{itemize}
   \item L-BFGS-B
     \begin{thebibliography}{blablabla}
@@ -835,7 +859,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Optimization}
+\begin{frame}{Optimization}
   \begin{block}{Gradient}
     \begin{align*}
       \Grad{{\bm n}} E &= \\
@@ -869,7 +893,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Results - Original Atmospheres}
+\begin{frame}{Results - Original Atmospheres}
   \begin{center}
     \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
   \end{center}
@@ -1101,9 +1125,6 @@
 %%%
 
 \begin{frame}[label=aerosols-data]{Aerosols Info}
-  %
-  % TODO - Add common aerosol sizes and quantities
-  %
   \begin{center}
     \includegraphics<1>[width=\columnwidth]{images/aerosol_micrographs.jpg}
     \includegraphics<2>[height=7cm]{images/radiation_budget.jpg}
@@ -1135,6 +1156,28 @@
       {\tiny Source. Levi, Applied Optics, Volume 2}
      \end{flushright}
   \end{center}  
+  \hfill\hyperlink{settings<5>}{\beamerreturnbutton{Return}}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=particle-type]{NASA - Component Particle Properties}
+  \framezoom<1><2>[border](0cm,5.5cm)(7cm,0.71cm)
+  \begin{center}
+    \includegraphics[height=6.5cm]{images/particle_data.jpg}
+  \end{center}    
+  \hfill{\tiny Source. NASA}\hyperlink{settings<5>}{\beamerreturnbutton{Return}}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=air-density]{Atmosphere Density}
+  \begin{center}
+    \includegraphics[height=6.5cm]{images/vert_dist.jpg}
+  \end{center}    
+  \begin{flushright}
+    {\tiny http://apollo.lsc.vsc.edu/}  \hyperlink{settings<4>}{\beamerreturnbutton{Return}}
+  \end{flushright}
 \end{frame}
 
 % \begin{frame}{Common Atmospheric Models}
