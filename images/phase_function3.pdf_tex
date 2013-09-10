@@ -55,5 +55,6 @@
     \put(-0.00445512,0.45893359){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14008732\unitlength}\raggedright 180\end{minipage}}}%
     \put(0.38817922,0.04051737){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14008732\unitlength}\raggedright 270\end{minipage}}}%
     \put(0.90532447,0.53452832){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.19792015\unitlength}\raggedright $\theta$\end{minipage}}}%
+    \put(0.53304641,0.09905458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.7257072\unitlength}\raggedright $P(\theta)$ - Phase Function\end{minipage}}}%
   \end{picture}%
 \endgroup%

@@ -529,7 +529,7 @@
      inkscape:cx="366.23882"
      inkscape:cy="360.71984"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="1028"
@@ -552,7 +552,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -561,15 +561,15 @@
      id="layer3"
      inkscape:label="images"
      style="display:inline"
-     sodipodi:insensitive="true"
      transform="translate(-6.3476563e-7,4.1015625e-6)">
     <image
-       y="332.52466"
-       x="191.50716"
-       id="image3009"
-       xlink:href="file:///C:/Users/amitibo/Dropbox/YoavAmitAides/text/presentations/PhD_candidancy/images/misr_od.jpg"
+       sodipodi:absref="C:\Users\amitibo\Dropbox\YoavAmitAides\text\presentations\PhD_candidancy\images\misr_od.jpg"
+       xlink:href="misr_od.jpg"
+       width="509.46518"
        height="286.8833"
-       width="509.46518" />
+       id="image3009"
+       x="191.50716"
+       y="332.52466" />
     <image
        sodipodi:absref="C:\Users\amitibo\Dropbox\YoavAmitAides\text\presentations\PhD_candidancy\images\misrvw11.jpg"
        xlink:href="misrvw11.jpg"

@@ -1,3 +1,9 @@
+\usepackage{tikz}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{arrows,shapes,shapes.callouts,decorations.pathmorphing,backgrounds}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [baseline=-.5ex]
+
 \tikzstyle{nodeblue}=[fill=blue!20, anchor=base, rounded corners=2pt]
 \tikzstyle{nodered}=[fill=red!20, anchor=base, rounded corners=2pt]
 \tikzstyle{nodegreen}=[fill=green!20, anchor=base, rounded corners=2pt]
@@ -10,10 +16,11 @@
     starburst,
     draw=black,
     ultra thick,
-    fill=red,
+    fill=magenta,
     text width=#1,
     align=center,
-    anchor=center
+    anchor=center,
+    blur shadow={shadow blur steps=5}
     ] at (#2) {#3};
   \end{tikzpicture}
 }

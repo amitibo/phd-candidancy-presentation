@@ -29,10 +29,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[overlay,absolute]{textpos}
-\usepackage{tikz}
-\usetikzlibrary{arrows,shapes,shapes.callouts,decorations.pathmorphing,backgrounds}
-\tikzstyle{every picture}+=[remember picture]
-\tikzstyle{na} = [baseline=-.5ex]
 \usepackage{cancel}
 
 \input{custom_tikz}
@@ -41,7 +37,7 @@
 %
 % To speed up of compilation
 %
-\includeonlyframes{current}
+\includeonlyframes{typical-concentrations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -199,23 +195,28 @@
 
 %%%
 
-\begin{frame}{LIDAR - Light Detection And Ranging}
+\begin{frame}[label=current]{LIDAR - Light Detection And Ranging}
   \begin{center}
-    \includegraphics<1>[width=\columnwidth]{images/lidar.pdf}
-    \includegraphics<2>[height=7cm]{images/calipso.jpg}
+    \includegraphics[width=0.9\columnwidth]{images/lidar.pdf}
   \end{center}
 
   \begin{flushright}
-    \only<1> {\tiny http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
-    \only<2> {\tiny http://earthobservatory.nasa.gov/}
+    {\tiny http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
+    %\only<2> {\tiny http://earthobservatory.nasa.gov/}
   \end{flushright}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Local \\
+      Expensive}
+  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Related Work}
 
-\begin{frame}{Integral Imaging}
+\begin{frame}[label=current]{Integral Imaging, Light-Field, Plenoptic}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
@@ -227,52 +228,16 @@
       \centering
       \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
       \captionof{figure}{\tiny http://graphics.stanford.edu/}
-      \includegraphics[height=0.30\textheight]{lytro.jpg}
-      \captionof{figure}{\tiny http://graphics.stanford.edu/}
+      \includegraphics[height=0.30\textheight]{light-field-camera.jpg}
+      \captionof{figure}{\tiny http://lightfield-forum.com}
     \end{column}
   \end{columns}
-\end{frame}
-
-%%%
-
-\begin{frame}{Computed Tomography}
-  \begin{columns}[C]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Reconstruct 3D object from a set of projections
-      \item Usually assumes attenuation
-      \item Optical Tomography assumes a scattering medium
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \centering
-      \includegraphics[height=0.40\textheight]{ct.jpg}
-      \captionof{figure}{}
-      \includegraphics[height=0.30\textheight]{Optical_Tomography.png}
-      \captionof{figure}{}
-    \end{column}
-  \end{columns}  
-\end{frame}
-
-%%%
-
-\begin{frame}[T]{Tomographic Reconstruction of Gas Plumes}
-  \begin{columns}[T]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Usually done in UV range
-      \item Simpler transfer model:
-        \begin{itemize}
-        \item Only scattering
-        \item Only emission and attenuation
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \includegraphics[height=0.40\textheight]{gas.jpg}
-      \captionof{figure}{\tiny Cosofret at el. 2009}
-    \end{column}
-  \end{columns}    
+  \only<2>
+  {
+    \CloudNote{0.3\textwidth}{0, 0}{
+      Small scale
+    }
+  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,17 +268,19 @@
 % - Explain symbols
 % - Explain better the optical depth
 % 
-\begin{frame}{Attenuation}
-  \begin{itemize}
-  \item  Light is attenuated according to {\em Beer-Lambert} law
-  \end{itemize}
-  \centerline{\includegraphics<1>[width=0.6\columnwidth]{images/beer_lambert.pdf}}
-  \begin{block}{Optical Depth}    
-    Measures transparency of medium
-    \begin{align*}
-      \tau = \sigma \int_{0}^x N(\tilde{x})\derivsym{\tilde{x}}
-    \end{align*}
+\begin{frame}[label=current]{Attenuation}
+  \begin{block}{Light is attenuated according to {\em Beer-Lambert} law}
+    \centerline{\def\svgwidth{0.6\columnwidth}\small{\input{images/beer_lambert.pdf_tex}}}
   \end{block}
+  \onslide<2>
+  {
+    \begin{block}{Optical Depth}    
+      Measures transparency of medium
+      \begin{align*}
+        \tau = \int \sigma n \derivsym{x}
+      \end{align*}
+    \end{block}
+  }
 \end{frame}
 
 %%%
@@ -343,19 +310,29 @@
 % TODO - Improve this
 % Add explaination on the \alpha sign that appears later in the presentation
 %
-\begin{frame}{Scattering}
+\begin{frame}[label=current]{Scattering}
     \begin{overprint}
       \only<1>
-      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function1.pdf_tex}}}}
+      {
+        \centerline{\def\svgwidth{0.6\linewidth}\small{\input{images/phase_function1.pdf_tex}}}
+      }
       \only<2>
-      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function2.pdf_tex}}}}
-      \only<3>
-      {\centerline{\def\svgwidth{0.5\linewidth}\small{\input{images/phase_function3.pdf_tex}}}}
+      {
+        \centerline{\def\svgwidth{0.6\linewidth}\small{\input{images/phase_function2.pdf_tex}}}
+      }
+      \only<3->
+      {
+        \centerline{\def\svgwidth{0.6\linewidth}\small{\input{images/phase_function3.pdf_tex}}}
+      }
     \end{overprint}
-    
-    \begin{center}
-      \only<3>{\Large Particle Phase Function}
-    \end{center}
+    \onslide<4>
+    {
+      \begin{center}{Scattering Ratio}
+        \begin{align*}
+          \alpha = k \sigma P(\theta) \derivsym{\theta}
+        \end{align*}
+      \end{center}
+    }
 \end{frame}
 
 %%%
@@ -371,33 +348,6 @@
     \centering
     \includegraphics[height=4cm]{images/Mie_Rayleigh.jpg}
   \end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Tomography}
-% TODO Maybe add a simple equation that explains the formation of the projection
-
-\begin{frame}{Attenuation Tomography}
-  \begin{center}
-    \includegraphics[height=6cm]{images/ct.png}
-  \end{center}
-  
-  \begin{flushright}
-    \only{\tiny http://medical-dictionary.thefreedictionary.com}
-  \end{flushright}
-\end{frame}
-
-%%%
-
-\begin{frame}{Emission Tomography}
-  \begin{center}
-    \includegraphics[height=6cm]{images/tomography_emission.jpg}
-  \end{center}
-  
-  \begin{flushright}
-    \only{\tiny Gregson at el. \em{Stochastic Tomography and its Applications in 3D Imaging of Mixing Fluids}}
-  \end{flushright}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -665,6 +615,81 @@
   \begin{center}
     \includegraphics[height=5cm]{images/diagram_algorithm.pdf}
   \end{center}
+\end{frame}
+
+\begin{frame}{Multi-angle Tomographic Reconstruction}
+  \begin{center}
+    \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network2.pdf_tex}}}
+  \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tomography}
+% TODO Maybe add a simple equation that explains the formation of the projection
+
+\begin{frame}{Attenuation Tomography}
+  \begin{center}
+    \includegraphics[height=6cm]{images/ct.png}
+  \end{center}
+  
+  \begin{flushright}
+    \only{\tiny http://medical-dictionary.thefreedictionary.com}
+  \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}{Emission Tomography}
+  \begin{center}
+    \includegraphics[height=6cm]{images/tomography_emission.jpg}
+  \end{center}
+  
+  \begin{flushright}
+    \only{\tiny Gregson at el. \em{Stochastic Tomography and its Applications in 3D Imaging of Mixing Fluids}}
+  \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}{Computed Tomography}
+  \begin{columns}[C]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Reconstruct 3D object from a set of projections
+      \item Usually assumes attenuation
+      \item Optical Tomography assumes a scattering medium
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.40\textheight]{ct.jpg}
+      \captionof{figure}{}
+      \includegraphics[height=0.30\textheight]{Optical_Tomography.png}
+      \captionof{figure}{}
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+%%%
+
+\begin{frame}[T]{Tomographic Reconstruction of Gas Plumes}
+  \begin{columns}[T]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Usually done in UV range
+      \item Simpler transfer model:
+        \begin{itemize}
+        \item Only scattering
+        \item Only emission and attenuation
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \includegraphics[height=0.40\textheight]{gas.jpg}
+      \captionof{figure}{\tiny Cosofret at el. 2009}
+    \end{column}
+  \end{columns}    
 \end{frame}
 
 %%%
@@ -1091,6 +1116,26 @@
 \end{frame}
 
 %%%
+
+\begin{frame}[label=typical-concentrations]{Typical Aerosol Concentrations}
+  \begin{center}
+    \setlength{\tabcolsep}{5pt}
+    \footnotesize
+    \begin{tabular}{ l c c }
+      \hline
+      Atmosphere type & part./$m^3$ & Main radii $\mu m$ \\
+      \hline
+      Clean Country Air & $10^8$ & 0.1-1.0 \\[0.2cm]
+      Pale blue haze, industr. & $10^{11}$ & 0.03-0.2 \\[0.2cm]
+      Fog & $10^6$-$5 \times 10^7$ & 3-60 \\[0.2cm]
+      Clouds, higher altitudes & $5 \times 10^7$-$1.5 \times 10^9$ & 2-30 \\
+      \hline
+    \end{tabular}
+    \begin{flushright}
+      {\tiny Source. Levi, Applied Optics, Volume 2}
+     \end{flushright}
+  \end{center}  
+\end{frame}
 
 % \begin{frame}{Common Atmospheric Models}
 %   \begin{itemize}
