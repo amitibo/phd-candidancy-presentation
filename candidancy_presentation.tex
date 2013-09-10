@@ -49,7 +49,7 @@
 }
 
 \author[Amit Aides]{
-  Student: Amit Aides \\
+  Amit Aides \\
   Supervisor: Prof. Yoav Y. Schechner
 }
 
@@ -86,11 +86,18 @@
 
 %%%
 
-\begin{frame}{Eyjafjallaj\"{o}kull Eruption in 2010}
+\begin{frame}[label=current]{Eyjafjallaj\"{o}kull Eruption in 2010}
   \begin{center}
     \includegraphics[height=7cm]{images/volcano-airport.jpg}
   \end{center}
   \begin{flushright}
+    \includemedia[
+    addresource=sounds/mountain_name.mp3,
+    flashvars={
+      source=sounds/mountain_name.mp3
+      &autoPlay=false
+    }
+    ]{\fbox{Play}}{APlayer.swf}
     {\tiny http://www.metrolic.com/eyjafjallajokull-is-dormant...for-the-moment-2042/}
   \end{flushright}
 \end{frame}
@@ -241,7 +248,7 @@
 % - Explain symbols
 % - Explain better the optical depth
 % 
-\begin{frame}[label=current]{Attenuation}
+\begin{frame}{Attenuation}
   \begin{block}{Light is attenuated according to {\em Beer-Lambert} law}
     \centerline{\def\svgwidth{0.6\columnwidth}\small{\input{images/beer_lambert.pdf_tex}}}
   \end{block}
@@ -283,7 +290,7 @@
 % TODO - Improve this
 % Add explaination on the \alpha sign that appears later in the presentation
 %
-\begin{frame}[label=current]{Scattering}
+\begin{frame}{Scattering}
     \begin{overprint}
       \only<1>
       {
@@ -610,13 +617,13 @@
 \subsubsection{Tomography}
 % TODO Maybe add a simple equation that explains the formation of the projection
 
-\begin{frame}[label=current]{Tomography}
+\begin{frame}{Tomography}
   \begin{block}{}
     Reconstruct 3D object from its set of projections    
   \end{block}
 \end{frame}
 
-\begin{frame}[label=current]{Attenuation Tomography}
+\begin{frame}{Attenuation Tomography}
   \begin{columns}
     \column{.5\textwidth}
     \includegraphics[height=6cm]{images/ct.png}
@@ -637,7 +644,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Emission Tomography}
+\begin{frame}{Emission Tomography}
   \begin{columns}
     \column{.5\textwidth}
     \begin{center}
@@ -661,7 +668,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Optical Tomography}
+\begin{frame}{Optical Tomography}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
@@ -684,7 +691,7 @@
 
 %%%
  
-\begin{frame}[label=current]{Integral Imaging, Light-Field, Plenoptic}
+\begin{frame}{Integral Imaging, Light-Field, Plenoptic}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{itemize}
@@ -1178,6 +1185,36 @@
   \begin{flushright}
     {\tiny http://apollo.lsc.vsc.edu/}  \hyperlink{settings<4>}{\beamerreturnbutton{Return}}
   \end{flushright}
+\end{frame}
+
+%%%
+
+\begin{frame}[label=tomo-algo]{Tomography Algorithms}
+  \begin{block}{Filtered Back Projection}
+    \only<1>{Linear projection is Radon transform}
+    \only<2>{Invert using inverse Radon transform}
+    \only<3>{Apply high pass filtering}
+  \end{block}
+
+  \begin{center}
+    \includegraphics<1>[height=6.5cm]{images/radon.jpg}
+    \includegraphics<2>[height=6.5cm]{images/radon_inv.jpg}
+    \includegraphics<3>[height=6.5cm]{images/radon_inv_filt.jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Tomography Algorithms}
+  \begin{block}{ART - Algebraic Reconstruction Technique}
+    Solve a set of linear equations of the form: \\
+    \begin{equation*}
+      \mat{A} \vect{x} = \vect{b}
+    \end{equation*}
+    using an iterative algorithm: \\
+    \begin{equation*}
+      \vect{x}^{k+1} = \vect{x}^{k} + \lambda_k \frac{b_{i} - \langle \vect{a}_{i}, \vect{x}^{k} \rangle}{\lVert \vect{a}_{i} \rVert^2} \vect{a}_{i}
+    \end{equation*}
+  \end{block}
+
 \end{frame}
 
 % \begin{frame}{Common Atmospheric Models}
