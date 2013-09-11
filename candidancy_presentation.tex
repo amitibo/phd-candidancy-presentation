@@ -31,6 +31,7 @@
 \usepackage{amssymb}
 \usepackage[overlay,absolute]{textpos}
 \usepackage{cancel}
+\usepackage{color}
 
 \input{custom_tikz}
 \input{custom_commands}
@@ -147,10 +148,10 @@
 \begin{frame}{Simulated Reconstruction}
   \begin{center}
     \only<1>{
-      \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
+      \animategraphics[width=0.9\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot1_}{0}{35}
     }
     \only<2>{
-      \animategraphics[width=0.7\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot2_}{0}{35}
+      \animategraphics[width=0.9\linewidth, loop, controls, buttonsize=5pt]{3}{images/result_movie1/snapshot2_}{0}{35}
     }
   \end{center}
   \begin{center}
@@ -239,17 +240,14 @@
 
 \subsection{Radiative Transfer}
 
-\begin{frame}{Radiation Transfer}
+\begin{frame}[label=RT]{Radiation Transfer}
   Light interaction with the atmosphere:
   \begin{itemize}
   \item Loses energy to absorption
   \item Gains energy by emission
   \item Redistributes energy by scattering
   \end{itemize}
-  % \begin{align*}
-  %   \hat{\Omega} \cdot \nabla I &+ (k_{s}+k_{a}) I_\nu = \\
-  %   &j + \frac{1}{4\pi} \int_\Omega I \cdot P(\hat{\Omega},\Omega) d\Omega
-  % \end{align*}    
+  \hfill\hyperlink{RTE}{\beamergotobutton{RTE}}  
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -276,9 +274,9 @@
   \end{tikzpicture}
   \onslide<4>
   {
-    \begin{block}{Optical Depth}    
+    \begin{block}{Optical Depth}
       \begin{align*}
-        \tau = \int \sigma n \derivsym{x}
+        \tau = \int \sigma n \derivsym{x} \qquad\Longrightarrow\qquad I=I_0 \exp(-\tau)
       \end{align*}
       Measures transparency of medium
     \end{block}
@@ -310,13 +308,18 @@
     {
       \begin{center}{Scattering Ratio}
         \begin{align*}
-          \alpha = k \sigma P(\theta) \derivsym{\theta}
+          \alpha = \tikz[baseline]{ \node[nodeyellow] (d1) {$k$}; } \sigma P(\theta) \derivsym{\theta}
         \end{align*}
       \end{center}
+      \begin{tikzpicture}[overlay]
+        \node[nodeyellow] at (2,.5) (s1) {Albedo};
+        \path[->] (s1) edge [bend right] (d1);
+      \end{tikzpicture}
     }
+
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[T]{Phase Functions Used}
   \begin{columns}[T]
@@ -367,7 +370,7 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Single-Scattering Model}
   \begin{columns}[c]
@@ -404,9 +407,9 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Image Formation Model}
+\begin{frame}[label=formation-model]{Image Formation Model}
   \begin{columns}[c]
 
     \column{0.7\textwidth}
@@ -419,7 +422,7 @@
     \footnotesize
     \begin{align*}
       \mathrm{I} &= \\
-      & \tikz[baseline]{ \node[nodeblue, visible on=<2->] (d1) {$\mathrm{L}^{\rm TOA}$}; } \,
+      & \tikz[baseline]{ \node[nodeblue, visible on=<2->] (d1) {\hyperlink{TOA}{$\mathrm{L}^{\rm TOA}$}}; } \,
       \tikz[baseline]{ \node[nodered, visible on=<5->] (d4) {$\OpCamera$}; }
       \curly{\roundy{
           \tikz[baseline]{ \node[nodegreen, visible on=<4->] (d3) {$\vect{\alpha}^{\rm aerosol} + \vect{\alpha}^{\rm air}$}; } }  \odot 
@@ -452,7 +455,7 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=settings]{Simulation Settings}
   \begin{center}
@@ -480,29 +483,31 @@
   \end{center}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Synthesized Examples}
   \begin{columns}[C]
     \begin{column}{.7\textwidth}
       \begin{overlayarea}{\columnwidth}{8cm}
         \only<1>
-        {\centerline{\includegraphics[height=7cm]{images/single_img1.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/fisheye.jpg}}}
         \only<2>
-        {\centerline{\includegraphics[height=7cm]{images/single_img2.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img1.pdf}}}
         \only<3>
-        {\centerline{\includegraphics[height=7cm]{images/single_img3.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img2.pdf}}}
         \only<4>
-        {\centerline{\includegraphics[height=7cm]{images/single_img4.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img3.pdf}}}
         \only<5>
-        {\centerline{\includegraphics[height=7cm]{images/single_img5.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img4.pdf}}}
         \only<6>
-        {\centerline{\includegraphics[height=7cm]{images/single_img6.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img5.pdf}}}
         \only<7>
-        {\centerline{\includegraphics[height=7cm]{images/single_img7.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img6.pdf}}}
         \only<8>
-        {\centerline{\includegraphics[height=7cm]{images/single_img8.pdf}}}
+        {\centerline{\includegraphics[height=7cm]{images/single_img7.pdf}}}
         \only<9>
+        {\centerline{\includegraphics[height=7cm]{images/single_img8.pdf}}}
+        \only<10>
         {\centerline{\includegraphics[height=7cm]{images/single_img9.pdf}}}
       \end{overlayarea}
     \end{column}
@@ -573,7 +578,7 @@
       \only<1>
       {
         \includegraphics[height=0.60\textheight]{images/result_mc.pdf}
-        \captionof{figure}{Monte Carlo Model}
+        \captionof{figure}{Monte Carlo Model\\{\color{red}$\sim 2$ Hour}}
       }
       \only<2>
       {
@@ -586,7 +591,7 @@
       \only<1>
       {
         \includegraphics[height=0.60\textheight]{images/result_single.pdf}
-        \captionof{figure}{Single Scattering Model}
+        \captionof{figure}{Single Scattering Model\\{\color{red}$\sim 3$ Sec}}
       }
       \only<2>
       {
@@ -643,7 +648,7 @@
   }
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Emission Tomography}
   \begin{columns}
@@ -667,7 +672,7 @@
   }
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Optical Tomography}
   \begin{columns}[C]
@@ -690,7 +695,7 @@
   }
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \begin{frame}{Integral Imaging, Light-Field, Plenoptic}
   \begin{columns}[C]
@@ -716,15 +721,29 @@
   }
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Multi-angle Tomographic Reconstruction}
-  \begin{center}
-    \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network2.pdf_tex}}}
-  \end{center}
+  \only<1>
+  {
+    \begin{center}
+      \centerline{\def\svgwidth{\linewidth}\small{\input{images/camera_network2.pdf_tex}}}
+    \end{center}
+  }
+  \only<2>
+  {
+    \begin{block}{Objective Function}
+      \begin{equation*}
+        \CostFunc{\DistUnknown}
+        = \sum_{c=1}^{N_{\rm views}}
+        \left\| {\bm i}^{\rm measured}_c - {\bm i}_c ({\bm n})
+        \right\|^2_2  + \eta \Psi ({\bm n})
+      \end{equation*}
+    \end{block}
+  }
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Challenge}
   \begin{center}
@@ -733,19 +752,16 @@
     \only<2>{\includegraphics[height=7cm]{images/challenge2.pdf}}
     \only<3>
     {
-      \begin{itemize}
-      \item Solutions:
-        \begin{enumerate}
-        \item Prior Knowledge
-        \item Large scale solvers
-        \item Parallelize the algorithm
-        \end{enumerate}
-      \end{itemize}
+      \begin{enumerate}
+      \item Prior Knowledge
+      \item Large scale solvers
+      \item Parallelize the algorithm
+      \end{enumerate}
     }
   \end{center}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Prior Knowledge}
   
@@ -753,7 +769,7 @@
     \column{0.4\paperwidth}
     \begin{itemize}
     \item <2-> Known air distribution \tikz[na] \coordinate (known-air);
-    \item <3-> \alert{Single known aerosol particle} \tikz[na] \coordinate (known-part);
+    \item <3-> \alert{Single known aerosol type} \tikz[na] \coordinate (known-part);
     \item <5-> Smoothness 
     \end{itemize}
     
@@ -786,7 +802,7 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Optimization}
   \begin{itemize}
@@ -801,7 +817,7 @@
   \end{itemize}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=objective]{Optimization}
   \begin{block}{Objective Function}
@@ -838,7 +854,7 @@
   \begin{tikzpicture}[overlay]
     \onslide<2>
     {
-      \node[nodeyellow] at (4,1.5)(s1) {\hyperlink{ref_images}{Reference Image}};
+      \node[nodeyellow] at (4,1.5)(s1) {\hyperlink{ref-images}{Acquired Image}};
       \path[->] (s1) edge [bend right] (d-im);
     }
     \onslide<3>
@@ -869,11 +885,15 @@
 %%%
 %%%
 
-\begin{frame}[label=current]{Optimization}
+\begin{frame}[label=gradient]{Optimization}
   \only<1>
   {
     \begin{block}{Estimated Image}
       Inverse algorithm is based on the single-scattering model
+     \begin{itemize}
+      \item Fast
+      \item Analytic $\Rightarrow$ differentiable
+      \end{itemize}
       \begin{align*}
         {\bm i}_c= L^{\rm TOA} \OpCamera_c & \left[\tilde{\vect{\alpha}}^{\rm air}_c + \varpi^{\rm aerosol}\sigma^{\rm
               aerosol} P^{\rm aerosol}_g(\vect{\Phi}^{\rm scatter}_c) \odot{\bm
@@ -881,11 +901,6 @@
           & \exp\left[-(\vect{\tau}_c^{\rm air} + {\sigma}^{\rm aerosol}
             {\bm D}_c{\bm n})\right]
       \end{align*}
-      \begin{itemize}
-      \item Fast
-      \item Analytic $\Rightarrow$ differentiable
-      \end{itemize}
-
     \end{block}
   }
   \only<2>
@@ -1047,7 +1062,7 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %
 % TODO
@@ -1071,7 +1086,7 @@
 
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{}
   \includemedia[
@@ -1082,7 +1097,7 @@
   ]{}{VPlayer.swf}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{}
   \begin{center}
@@ -1115,10 +1130,10 @@
           scatter}_c) \odot{\bm n}    ]}
     \end{align*}
   \end{block}
-  \hfill\hyperlink{gradient}{\beamerreturnbutton{Return}}
+  \hfill\hyperlink{gradient<2>}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=mask]{Multi-Scattering Mask}
   \begin{itemize}
@@ -1126,10 +1141,10 @@
   \item Calculated empirically
   \end{itemize}
   \centerline{\includegraphics[height=4cm]{images/sun_mask.pdf}}
-  \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}} 
+  \hfill\hyperlink{objective<6>}{\beamerreturnbutton{Return}} 
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=regularization]{Regularization}
   \begin{itemize}
@@ -1139,12 +1154,12 @@
   \item Regularization by $\Psi({\bm n}) = \| {\bf W} \Laplacian{\bm n}\|^2_2$
   \end{itemize}
 
-  \hfill\hyperlink{objective<3>}{\beamerreturnbutton{Return}}
+  \hfill\hyperlink{objective<5>}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[label=ref_images]{Refernce Image}
+\begin{frame}[label=ref-images]{Refernce Image}
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
       \centering
@@ -1161,7 +1176,7 @@
   \hfill\hyperlink{objective<2>}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=aerosols-data]{Aerosols Info}
   \begin{center}
@@ -1175,7 +1190,7 @@
   \hfill\hyperlink{motivation}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=typical-concentrations]{Typical Aerosol Concentrations}
   \begin{center}
@@ -1198,7 +1213,7 @@
   \hfill\hyperlink{settings<5>}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=particle-type]{NASA - Component Particle Properties}
   \framezoom<1><2>[border](0cm,5.5cm)(7cm,0.71cm)
@@ -1208,8 +1223,7 @@
   \hfill{\tiny Source. NASA}\hyperlink{settings<5>}{\beamerreturnbutton{Return}}
 \end{frame}
 
-%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[label=air-density]{Atmosphere Density}
   \begin{center}
     \includegraphics[height=6.5cm]{images/vert_dist.jpg}
@@ -1219,7 +1233,7 @@
   \end{flushright}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=tomo-algo]{Tomography Algorithms}
   \begin{block}{Filtered Back Projection}
@@ -1235,6 +1249,8 @@
   \end{center}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}{Tomography Algorithms}
   \begin{block}{ART - Algebraic Reconstruction Technique}
     Solve a set of linear equations of the form: \\
@@ -1246,7 +1262,40 @@
       \vect{x}^{k+1} = \vect{x}^{k} + \lambda_k \frac{b_{i} - \langle \vect{a}_{i}, \vect{x}^{k} \rangle}{\lVert \vect{a}_{i} \rVert^2} \vect{a}_{i}
     \end{equation*}
   \end{block}
+\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[label=TOA]{TOA}
+  \begin{center}
+    \includegraphics<1>[height=5.5cm]{images/Solar_Spectrum.png}
+    \only<2>
+    {
+      \begin{tabular}{l c c c}
+        \hline
+        \ & R & G & B \\
+        \hline
+        Wavelength  $[nm]$ & 672 & 558 & 446 \\[0.2cm]
+        Intensity        & 255 & 237 & 224 \\
+        \hline
+      \end{tabular}
+      \begin{flushright}
+        \hyperlink{formation-model}{\beamerreturnbutton{Return}}
+      \end{flushright}
+    }
+  \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[label=RTE]{Radiative Transfer Equation}
+  \begin{align*}
+    \hat{\Omega} \cdot \nabla I &+ (k_{s}+k_{a}) I_\nu = \\
+    &j + \frac{1}{4\pi} \int_\Omega I \cdot P(\hat{\Omega},\Omega) d\Omega
+  \end{align*}    
+  \begin{flushright}
+    \hyperlink{RT}{\beamerreturnbutton{Return}}
+  \end{flushright}
 \end{frame}
 
 % \begin{frame}{Common Atmospheric Models}

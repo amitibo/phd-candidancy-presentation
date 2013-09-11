@@ -1298,9 +1298,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1680"
-     inkscape:window-height="1028"
-     inkscape:window-x="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
@@ -1311,7 +1311,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2298,7 +2298,7 @@
            x="-16.162441"
            y="157.31"
            style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial Bold" /></flowRegion><flowPara
-         id="flowPara23347">REFERENCE IMAGES</flowPara></flowRoot>    <flowRoot
+         id="flowPara23347">ACQUIRED IMAGES</flowPara></flowRoot>    <flowRoot
        transform="translate(468.73306,29.447379)"
        xml:space="preserve"
        id="flowRoot23341-7"
