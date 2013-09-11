@@ -38,7 +38,7 @@
 %
 % To speed up of compilation
 %
-\includeonlyframes{current}
+%\includeonlyframes{current}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%% title page information %%%%%%%%%%%%%%%%%%
@@ -291,7 +291,7 @@
 % TODO - Improve this
 % Add explaination on the \alpha sign that appears later in the presentation
 %
-\begin{frame}[label=current]{Scattering}
+\begin{frame}{Scattering}
     \begin{overprint}
       \only<1>
       {
@@ -350,7 +350,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Image formation using the single-scattering model}
+\subsection{Single-scattering model}
 
 \begin{frame}{Single-Scattering Model}
   \begin{columns}[C]
@@ -406,7 +406,7 @@
 
 %%%
 
-\begin{frame}[label=current]{Image Formation Model}
+\begin{frame}{Image Formation Model}
   \begin{columns}[c]
 
     \column{0.7\textwidth}
@@ -684,7 +684,7 @@
   \only<2>
   {
     \CloudNote{0.4\textwidth}{0, 0}{
-      Diffuse approximation \\
+      Diffuse regime \\
       Controlled source
     }
   }
@@ -866,20 +866,51 @@
 \end{frame}
 
 %%%
+%%%
+%%%
 
-\begin{frame}{Optimization}
-  \begin{block}{Gradient}
-    \begin{align*}
-      \Grad{{\bm n}} E &= \\
-      -&2\sum_{c=1}^{N_{\rm views}}
-      \transpose{\left[{\bm J}_{{\bm i}_c}({\bm n})\right]} \transpose{\MaskSun}\MaskSun[{\bm i}^{\rm
-        measured}_c - {\bm i}_c({\bm n})] + 2 \eta
-      \transpose{\Laplacian}\transpose{{\bf W}}{\bf W}\Laplacian{\bm n}
-    \end{align*}
-  \end{block}
-  \hfill\hyperlink{jacobian}{\beamergotobutton{Jacobian}}
+\begin{frame}[label=current]{Optimization}
+  \only<1>
+  {
+    \begin{block}{Estimated Image}
+      Inverse algorithm is based on the single-scattering model
+      \begin{align*}
+        {\bm i}_c= L^{\rm TOA} \OpCamera_c & \left[\tilde{\vect{\alpha}}^{\rm air}_c + \varpi^{\rm aerosol}\sigma^{\rm
+              aerosol} P^{\rm aerosol}_g(\vect{\Phi}^{\rm scatter}_c) \odot{\bm
+              n} \right] \odot \\
+          & \exp\left[-(\vect{\tau}_c^{\rm air} + {\sigma}^{\rm aerosol}
+            {\bm D}_c{\bm n})\right]
+      \end{align*}
+      \begin{itemize}
+      \item Fast
+      \item Analytic $\Rightarrow$ differentiable
+      \end{itemize}
+
+    \end{block}
+  }
+  \only<2>
+  {
+    \begin{block}{Gradient of the objective function}
+      \begin{align*}
+        \Grad{{\bm n}} E &= \\
+        -&2\sum_{c=1}^{N_{\rm views}}
+        \transpose{\left[\tikz[baseline]{\node[nodered] (d1) {${\bm J}_{{\bm i}_c}({\bm n})$};}\right]} \transpose{\MaskSun}\MaskSun[{\bm i}^{\rm
+          measured}_c - {\bm i}_c({\bm n})] + 2 \eta
+        \transpose{\Laplacian}\transpose{{\bf W}}{\bf W}\Laplacian{\bm n}
+      \end{align*}
+    \end{block}
+  }
+  \begin{tikzpicture}[overlay]
+    \onslide<2>
+    {
+      \node[nodered] at (4,-.5)(s1) {\hyperlink{jacobian}{Jacobian}};
+      \path[->] (s1) edge [bend right] (d1);
+    }
+  \end{tikzpicture}
 \end{frame}
 
+%%%
+%%%
 %%%
 
 \begin{frame}{Parallelization} 
