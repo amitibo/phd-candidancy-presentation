@@ -252,10 +252,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO improve this:
-% - Explain symbols
-% - Explain better the optical depth
-% 
 \begin{frame}{Attenuation}
   \begin{block}{Light is attenuated according to {\em Beer-Lambert} law}
     \centerline{\def\svgwidth{0.6\columnwidth}\small{\input{images/beer_lambert.pdf_tex}}}
@@ -285,10 +281,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%
-% TODO - Improve this
-% Add explaination on the \alpha sign that appears later in the presentation
-%
 \begin{frame}{Scattering}
     \begin{overprint}
       \only<1>
@@ -621,7 +613,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Tomography}
-% TODO Maybe add a simple equation that explains the formation of the projection
 
 \begin{frame}{Tomography}
   \begin{block}{}
@@ -881,9 +872,7 @@
   \end{tikzpicture}
 \end{frame}
 
-%%%
-%%%
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=gradient]{Optimization}
   \only<1>
@@ -924,9 +913,7 @@
   \end{tikzpicture}
 \end{frame}
 
-%%%
-%%%
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Parallelization} 
   \begin{columns}
@@ -945,7 +932,7 @@
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Results - Original Atmospheres}
   \begin{center}
@@ -956,7 +943,7 @@
   \end{center}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Results - Single-scattering Simulations}
   \begin{center}
@@ -967,7 +954,7 @@
   \end{center}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Results - Monte-Carlo Simulations}
   \begin{center}
@@ -1022,19 +1009,32 @@
 
 \subsection{Inverse Problem}
 
+\begin{frame}{Algorithm Analysis}
+  \begin{itemize}
+  \item<1-> Limits:
+    \begin{itemize}
+    \item Validity of the Single Scattering approximation
+    \item Theoretical reconstruction limits
+    \end{itemize}
+  \item<2-> Camera number vs Reconstruction resolution
+  \item<3-> Implications of non uniform camera placement
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}{Model Extension}
   \begin{itemize}
-  \item Ground BRDF
-  \item Infinite Atmosphere
-  \item Multiple particles
+  \item<1-> Ground BRDF
+  \item<2-> Unbounded Atmosphere
+  \item<3-> Multiple particles
     \begin{itemize}
     \item Martonchik at el. 1998
     \end{itemize}
-  \item Improve algorithm speed
-  \item Account for Multiple-Scattering
-  \item Cloudy Skies
+  \item<4-> Improve algorithm speed
+  \item<5-> Higher scattering orders
+  \item<6-> Cloudy Skies
   \end{itemize}
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1064,10 +1064,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%
-% TODO
-% Add refernces to the corresponding images 
-%
 \begin{frame}{Reconstruction}
 
   \begin{itemize}
@@ -1076,12 +1072,7 @@
     \item SfM - Structure from Motion 
     \item Visual Hull
     \end{itemize}
-
-  \item Model extension
-    \begin{itemize}
-    \item Calculate effective phase function
-    \item Add as a separate source
-    \end{itemize}
+  \item Add clouds to the forward model
   \end{itemize}
 
 \end{frame}
