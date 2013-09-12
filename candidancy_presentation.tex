@@ -956,12 +956,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Results - Monte-Carlo Simulations}
+\begin{frame}[label=results]{Results - Monte-Carlo Simulations}
   \begin{center}
     \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_mc.pdf_tex}}}
   \end{center}
   \begin{center}
     \tiny{Color represents aerosol density. The density units are $10^{6}~{\rm particles}/{\rm m}^3$}
+    \hfill\hyperlink{error}{\beamergotobutton{Error}}
   \end{center}
 \end{frame}
 
@@ -1287,6 +1288,27 @@
   \begin{flushright}
     \hyperlink{RT}{\beamerreturnbutton{Return}}
   \end{flushright}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[label=error]{Reconstruction error}
+  \begin{center}
+    \begin{tabular}{l c c}
+      \hline
+      \ & Clouds & Front \\
+      \hline
+      Single-Scat.  & 0.14 & 0.20 \\[0.2cm]
+      Multi-Scat.   & 0.65 & 0.65 \\
+      \hline
+    \end{tabular}
+    \begin{equation*}
+      \epsilon=\frac{\|\hat{\bm n} - {\bm n}^{\rm true} \|_1}{\| {\bm n}^{\rm true} \|_1}
+    \end{equation*}
+    \begin{flushright}
+      \hyperlink{results}{\beamerreturnbutton{Return}}
+    \end{flushright}
+  \end{center}
 \end{frame}
 
 % \begin{frame}{Common Atmospheric Models}
