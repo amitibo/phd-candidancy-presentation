@@ -125,6 +125,52 @@
   \end{center}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{State of The Art}
+
+\begin{frame}{Remote Sensing}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{images/misr.pdf}
+  \end{center}
+  \begin{flushright}
+    {\tiny http://earthobservatory.nasa.gov/}
+  \end{flushright}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Low resolution \\
+      2D reconstruction \\
+      Top viewing point \\
+      Expensive}
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LIDAR - Light Detection And Ranging}
+  \begin{center}
+    \includegraphics[width=0.9\columnwidth]{images/lidar.pdf}
+  \end{center}
+
+  \begin{flushright}
+    {\tiny http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
+    %\only<2> {\tiny http://earthobservatory.nasa.gov/}
+  \end{flushright}
+  \only<2>
+  {
+    \CloudNote{0.4\textwidth}{0, 0}{
+      Local \\
+      Expensive}
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Ongoing Results}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Multi-angle imaging from the ground}
@@ -182,50 +228,6 @@
       \end{itemize}
     \end{block}
   \end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{State of The Art}
-
-\TitleFrame{}{State of The Art}
-
-\begin{frame}{Remote Sensing}
-  \begin{center}
-    \includegraphics[width=0.9\textwidth]{images/misr.pdf}
-  \end{center}
-  \begin{flushright}
-    {\tiny http://earthobservatory.nasa.gov/}
-  \end{flushright}
-  \only<2>
-  {
-    \CloudNote{0.4\textwidth}{0, 0}{
-      Low resolution \\
-      2D reconstruction \\
-      Top viewing point \\
-      Expensive}
-  }
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{LIDAR - Light Detection And Ranging}
-  \begin{center}
-    \includegraphics[width=0.9\columnwidth]{images/lidar.pdf}
-  \end{center}
-
-  \begin{flushright}
-    {\tiny http://jp.hamamatsu.com/en/rd/technology/energy/lidar.html}
-    %\only<2> {\tiny http://earthobservatory.nasa.gov/}
-  \end{flushright}
-  \only<2>
-  {
-    \CloudNote{0.4\textwidth}{0, 0}{
-      Local \\
-      Expensive}
-  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -354,8 +356,12 @@
     \item Simple
     \item Fast
     \item Analytic
+    \item Thin distributions
     \end{itemize}
-
+    \footnotesize{
+      Bo Sun at el., 2005\\
+      Lucia Florescu at el., 2009\\
+      D. Bernabei at el., 2010}
     \column{0.6\textwidth}
     \includegraphics[width=\columnwidth]{images/diagram_models_single.pdf}
 
@@ -513,6 +519,7 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Multi-Scattering Simulations}
 
@@ -526,12 +533,16 @@
     \item Physical
     \item Slow
     \item Not Analytic
-    \item Joint work with Mr. Vadim Holodovsky
+    \item Joint work with Vadim Holodovsky
     \end{itemize}
+    \footnotesize{
+      Hironobu Iwabuchi 2006\\
+      Zhen Wang at el., 2012
+    }
   \end{columns}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Monte Carlo Method}
   \begin{figure}
@@ -561,7 +572,7 @@
   \end{figure}
 \end{frame}
 
-%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Monte Carlo Results}
   \begin{columns}[T]
@@ -687,32 +698,6 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-\begin{frame}{Integral Imaging, Light-Field, Plenoptic}
-  \begin{columns}[C]
-    \begin{column}{.7\textwidth}
-      \begin{itemize}
-      \item Sample light in space and direction
-      \item Enables re-focus, depth recovery, etc
-      \end{itemize}
-    \end{column}
-    \begin{column}{.3\textwidth}
-      \centering
-      \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
-      \captionof{figure}{\tiny http://graphics.stanford.edu/}
-      \includegraphics[height=0.30\textheight]{light-field-camera.jpg}
-      \captionof{figure}{\tiny http://lightfield-forum.com}
-    \end{column}
-  \end{columns}
-  \only<2>
-  {
-    \CloudNote{0.3\textwidth}{0, 0}{
-      Small scale
-    }
-  }
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Multi-angle Tomographic Reconstruction}
   \only<1>
@@ -795,17 +780,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Optimization}
-  \begin{itemize}
-  \item L-BFGS-B
-    \begin{thebibliography}{blablabla}
-    \bibitem[blablabla]{blablabla}
-      R. H. Byrd, P. Lu and J. Nocedal.
-      \newblock A Limited Memory Algorithm for Bound Constrained Optimization.
-      \newblock {\em SIAM Journal on Scientific and Statistical Computing}, 1995.
-    \end{thebibliography}
-  \item Requires only the objective and its gradient
-  \end{itemize}
+\begin{frame}[label=current]{Optimization}
+  \begin{block}{L-BFGS-B}
+    \begin{itemize}
+    \item Limited Memory Algorithm for Bound Constrained Optimization\\
+      R. H. Byrd, P. Lu and J. Nocedal., 1995.
+    \item Requires only the objective and its gradient
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -883,6 +865,16 @@
       \item Fast
       \item Analytic $\Rightarrow$ differentiable
       \end{itemize}
+    \end{block}
+  }
+  \only<2>
+  {
+    \begin{block}{Estimated Image}
+      Inverse algorithm is based on the single-scattering model
+     \begin{itemize}
+      \item Fast
+      \item Analytic $\Rightarrow$ differentiable
+      \end{itemize}
       \begin{align*}
         {\bm i}_c= L^{\rm TOA} \OpCamera_c & \left[\tilde{\vect{\alpha}}^{\rm air}_c + \varpi^{\rm aerosol}\sigma^{\rm
               aerosol} P^{\rm aerosol}_g(\vect{\Phi}^{\rm scatter}_c) \odot{\bm
@@ -892,7 +884,7 @@
       \end{align*}
     \end{block}
   }
-  \only<2>
+  \only<3->
   {
     \begin{block}{Gradient of the objective function}
       \begin{align*}
@@ -905,7 +897,7 @@
     \end{block}
   }
   \begin{tikzpicture}[overlay]
-    \onslide<2>
+    \onslide<4>
     {
       \node[nodered] at (4,-.5)(s1) {\hyperlink{jacobian}{Jacobian}};
       \path[->] (s1) edge [bend right] (d1);
@@ -934,7 +926,18 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Results - Original Atmospheres}
+\begin{frame}{Testing Concepts}
+  \begin{center}
+    \centering
+    \only<1>{\includegraphics[width=\textwidth]{images/diagram_simulations1.pdf}}
+    \only<2>{\includegraphics[width=\textwidth]{images/diagram_simulations2.pdf}}
+    \only<3>{\includegraphics[width=\textwidth]{images/diagram_simulations3.pdf}}
+  \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Simulated Atmospheres}
   \begin{center}
     \centerline{\def\svgwidth{1.15\linewidth}\footnotesize{\input{images/atmo3d_original.pdf_tex}}}
   \end{center}
@@ -1017,7 +1020,7 @@
     \item Validity of the Single Scattering approximation
     \item Theoretical reconstruction limits
     \end{itemize}
-  \item<2-> Camera number vs Reconstruction resolution
+  \item<2-> Camera number vs reconstruction resolution
   \item<3-> Implications of non uniform camera placement
   \end{itemize}
 \end{frame}
@@ -1122,18 +1125,26 @@
           scatter}_c) \odot{\bm n}    ]}
     \end{align*}
   \end{block}
-  \hfill\hyperlink{gradient<2>}{\beamerreturnbutton{Return}}
+  \hfill\hyperlink{gradient<4>}{\beamerreturnbutton{Return}}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[label=mask]{Multi-Scattering Mask}
-  \begin{itemize}
-  \item Weight error by Single-Scattering dominance
-  \item Calculated empirically
-  \end{itemize}
-  \centerline{\includegraphics[height=4cm]{images/sun_mask.pdf}}
-  \hfill\hyperlink{objective<6>}{\beamerreturnbutton{Return}} 
+  \only<1>
+  {
+    \centerline{\def\svgwidth{0.4\linewidth}\footnotesize{\input{images/cross_section_x.pdf_tex}}}
+    \captionof{figure}{X Cross Section}
+  }
+  \only<2>
+  {
+    \begin{itemize}
+    \item Weight error by Single-Scattering dominance
+    \item Calculated empirically
+    \end{itemize}
+    \centerline{\includegraphics[height=4cm]{images/sun_mask.pdf}}
+    \hfill\hyperlink{objective<6>}{\beamerreturnbutton{Return}} 
+  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1309,6 +1320,32 @@
       \hyperlink{results}{\beamerreturnbutton{Return}}
     \end{flushright}
   \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\begin{frame}{Integral Imaging, Light-Field, Plenoptic}
+  \begin{columns}[C]
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+      \item Sample light in space and direction
+      \item Enables re-focus, depth recovery, etc
+      \end{itemize}
+    \end{column}
+    \begin{column}{.3\textwidth}
+      \centering
+      \includegraphics[height=0.30\textheight]{stanford_camera_array_640x480.jpg}
+      \captionof{figure}{\tiny http://graphics.stanford.edu/}
+      \includegraphics[height=0.30\textheight]{light-field-camera.jpg}
+      \captionof{figure}{\tiny http://lightfield-forum.com}
+    \end{column}
+  \end{columns}
+  \only<2>
+  {
+    \CloudNote{0.3\textwidth}{0, 0}{
+      Small scale
+    }
+  }
 \end{frame}
 
 % \begin{frame}{Common Atmospheric Models}
